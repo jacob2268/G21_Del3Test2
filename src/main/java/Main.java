@@ -10,6 +10,9 @@ public class Main {
 
 
 
+
+
+
         GUI_Player player = new GUI_Player("Jacob",1000);
         gui.addPlayer(player);
         GUI_Player player2 = new GUI_Player("Tommy",1000);
