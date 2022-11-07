@@ -1,12 +1,12 @@
 package Controller;
 import Model.Board;
 
-public class gameController {
+public class GameController {
     GUIcontroller guiController;
 
     private Board gameBoard;
 
-    public gameController() {
+    public GameController() {
         GUIcontroller guiController;
     }
 }
