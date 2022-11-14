@@ -1,15 +1,8 @@
+import gui_fields.GUI_Player;
+
 public class Account {
-    private int balance = 1000;
 
-    Account() {
-        balance = 1000;
+    Account(GUI_Player player) {
     }
 
-    public int getBalance() {
-        return balance;
-    }
-
-    public void setBalance() {
-
-    }
 }

@@ -1,3 +1,5 @@
+import Controller.GUIController;
+import Controller.GameController;
 import gui_codebehind.GUI_BoardController;
 import gui_fields.*;
 import gui_main.GUI;
@@ -7,6 +9,8 @@ import static java.awt.Color.white;
 
 public class Main {
     public static void main(String[] args) {
+        GameController gameController = new GameController();
+        gameController.playGame();
 
     }
 }
