@@ -4,6 +4,9 @@ import Model.FieldFactory;
 import gui_fields.GUI_Field;
 import gui_main.GUI;
 import Model.Player;
+import Model.DiceCup;
+
+import java.util.Arrays;
 
 public class GameController {
     GUIController guiController;
@@ -23,7 +26,19 @@ public class GameController {
     public void setupGame() {
         guiController.createBoard();
         setupPlayers();
+        setupDice();
+        setupPiece();
 
+    }
+
+    private void setupPiece() {
+
+    }
+
+    public DiceCup setupDice() {
+        DiceCup diceCup = new DiceCup();
+
+        return diceCup;
     }
 
     public Player[] setupPlayers(){
@@ -31,12 +46,13 @@ public class GameController {
         Player[] players = new Player[playerCount];
 
         for(int i = 0; i < playerCount; i++) {
-            players[i] = new Player(guiController.getUserString(), 0);
+            players[i] = new Player(guiController.getUserString(), 0, 20);
+            guiController.addPlayer(players[i]);
+            System.out.println("Element at index " + i + " : " + players[i].getName());
         }
 
+
         System.out.println("loop færdig");
-
-
 
         return players;
     }

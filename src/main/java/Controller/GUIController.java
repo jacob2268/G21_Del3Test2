@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.FieldFactory;
+import Model.Player;
 import gui_fields.*;
 import gui_main.GUI;
 import org.jetbrains.annotations.NotNull;
@@ -18,10 +19,11 @@ public class GUIController {
 
     public GUIController() {
         this.gui = new GUI(createBoard());
+        this.gui_players = new GUI_Player[](createPlayers());
     }
 
-
-
+    private GUI_Player createPlayers() {
+    }
 
 
     public GUI_Field[] createBoard() {
@@ -34,7 +36,7 @@ public class GUIController {
     }
 
     public String getUserString() {
-        return gui.getUserString("Enter player name");
+        return gui.getUserString("Enter player" +  " name");
     }
 
     private static void setupPlayers() {
@@ -49,7 +51,7 @@ public class GUIController {
 //                GUI_Player player1 = new GUI_Player(input1, 20);
 //                gui.addPlayer(player1);
 //                player1.getCar().setPosition(field);
-//                Account accountP1 = new Account(player1);
+//                Model.Account accountP1 = new Model.Account(player1);
 //                gui.showMessage(" ");
 //                break;
 //            case "2":
@@ -57,12 +59,12 @@ public class GUIController {
 //                player1 = new GUI_Player(nameP1, 20);
 //                gui.addPlayer(player1);
 //                player1.getCar().setPosition(field);
-//                accountP1 = new Account(player1);
+//                accountP1 = new Model.Account(player1);
 //                @NotNull String input2 = gui.getUserString("Enter the name of player 2 and press OK");
 //                GUI_Player player2 = new GUI_Player(input2, 20);
 //                gui.addPlayer(player2);
 //                player2.getCar().setPosition(field);
-//                Account accountP2 = new Account(player2);
+//                Model.Account accountP2 = new Model.Account(player2);
 //                gui.showMessage(" ");
 //                break;
 //            case "3":
@@ -70,17 +72,17 @@ public class GUIController {
 //                player1 = new GUI_Player(input1, 18);
 //                gui.addPlayer(player1);
 //                player1.getCar().setPosition(field);
-//                accountP1 = new Account(player1);
+//                accountP1 = new Model.Account(player1);
 //                input2 = gui.getUserString("Enter the name of player 2 and press OK");
 //                player2 = new GUI_Player(input2, 18);
 //                gui.addPlayer(player2);
 //                player2.getCar().setPosition(field);
-//                accountP2 = new Account(player2);
+//                accountP2 = new Model.Account(player2);
 //                @NotNull String input3 = gui.getUserString("Enter the name of player 3 and press OK");
 //                GUI_Player player3 = new GUI_Player(input3, 18);
 //                gui.addPlayer(player3);
 //                player3.getCar().setPosition(field);
-//                Account accountP3 = new Account(player3);
+//                Model.Account accountP3 = new Model.Account(player3);
 //                gui.showMessage(" ");
 //                break;
 //            case "4":
@@ -88,26 +90,30 @@ public class GUIController {
 //                player1 = new GUI_Player(input1, 16);
 //                gui.addPlayer(player1);
 //                player1.getCar().setPosition(field);
-//                accountP1 = new Account(player1);
+//                accountP1 = new Model.Account(player1);
 //                input2 = gui.getUserString("Enter the name of player 2 and press OK");
 //                player2 = new GUI_Player(input2, 16);
 //                gui.addPlayer(player2);
 //                player2.getCar().setPosition(field);
-//                accountP2 = new Account(player2);
+//                accountP2 = new Model.Account(player2);
 //                input3 = gui.getUserString("Enter the name of player 3 and press OK");
 //                player3 = new GUI_Player(input3, 16);
 //                gui.addPlayer(player3);
 //                player3.getCar().setPosition(field);
-//                accountP3 = new Account(player3);
+//                accountP3 = new Model.Account(player3);
 //                @NotNull String input4 = gui.getUserString("Enter the name of player 4 and press OK");
 //                GUI_Player player4 = new GUI_Player(input4, 16);
 //                gui.addPlayer(player4);
 //                player4.getCar().setPosition(field);
-//                Account accountP4 = new Account(player4);
+//                Model.Account accountP4 = new Model.Account(player4);
 //                gui.showMessage(" ");
 //                break;
         }
+
+    public Player addPlayer(Player players) {
+        return gui.addPlayer(gui_players)
     }
+}
 
 
 
