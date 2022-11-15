@@ -12,6 +12,7 @@ public class GameController {
     GUIController guiController;
 
     private Board gameBoard;
+    private Player[] players;
 
     public GameController() {
         this.guiController = new GUIController();
@@ -25,9 +26,8 @@ public class GameController {
 
     public void setupGame() {
         guiController.createBoard();
-        setupPlayers();
-        setupDice();
-        setupPiece();
+        players = setupPlayers();
+        guiController.setupPlayers(players);
 
     }
 
@@ -50,9 +50,6 @@ public class GameController {
             guiController.addPlayer(players[i]);
             System.out.println("Element at index " + i + " : " + players[i].getName());
         }
-
-
-        System.out.println("loop færdig");
 
         return players;
     }
