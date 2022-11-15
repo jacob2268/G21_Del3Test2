@@ -9,10 +9,12 @@ public class DiceCup extends Die {
 
     public int roll() {
         die1.setFaceValue((int) (Math.random() * 6) + 1);
-        die1.setFaceValue((int) (Math.random() * 6) + 1);
+        die2.setFaceValue((int) (Math.random() * 6) + 1);
         result = die1.getFaceValue() + die2.getFaceValue();
         return result;
     }
 
-
+    public int getResult() {
+        return result;
+    }
 }

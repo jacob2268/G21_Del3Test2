@@ -11,6 +11,8 @@ import java.util.Arrays;
 public class GameController {
     GUIController guiController;
 
+    DiceCup diceCup;
+
     private Board gameBoard;
     private Player[] players;
 
@@ -22,6 +24,13 @@ public class GameController {
 
     public void playGame() {
         setupGame();
+        playTurn();
+    }
+
+    private void playTurn() {
+        diceCup = new DiceCup();
+        diceCup.roll();
+        System.out.println(diceCup.getResult());
     }
 
     public void setupGame() {
@@ -31,15 +40,6 @@ public class GameController {
 
     }
 
-    private void setupPiece() {
-
-    }
-
-    public DiceCup setupDice() {
-        DiceCup diceCup = new DiceCup();
-
-        return diceCup;
-    }
 
     public Player[] setupPlayers(){
         int playerCount = guiController.getUserInteger();
@@ -47,7 +47,6 @@ public class GameController {
 
         for(int i = 0; i < playerCount; i++) {
             players[i] = new Player(guiController.getUserString(), 0, 20);
-            guiController.addPlayer(players[i]);
             System.out.println("Element at index " + i + " : " + players[i].getName());
         }
 
