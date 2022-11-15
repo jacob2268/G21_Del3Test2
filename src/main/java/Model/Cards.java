@@ -2,7 +2,8 @@ package Model;
 
 public class Cards {
 
-    public Cards(String name, int balanceUpdate) {
+
+    public Cards(String name) {
 
     }
 

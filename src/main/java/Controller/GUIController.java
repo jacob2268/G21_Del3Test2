@@ -8,9 +8,9 @@ import gui_main.GUI;
 
 public class GUIController {
 
-    GUI_Field[] gui_fieldArray;
-    GUI gui;
-    GUI_Player[] gui_players;
+    private GUI_Field[] gui_fieldArray;
+    private GUI gui;
+    private GUI_Player[] gui_players;
 
     public GUIController() {
         this.gui = new GUI(createBoard());

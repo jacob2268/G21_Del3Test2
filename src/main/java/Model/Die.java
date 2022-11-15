@@ -9,8 +9,6 @@ public class Die {
         faceValue = 1;
     }
 
-
-
     public int getFaceValue() {
         return faceValue;
     }
