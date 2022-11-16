@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class GameController {
     GUIController guiController;
 
-    DiceCup diceCup;    
+    private DiceCup diceCup;
 
     private Board gameBoard;
     private Player[] players;
@@ -26,15 +26,14 @@ public class GameController {
     }
 
     private void playTurn() {
-        diceCup = new DiceCup();
-        diceCup.roll();
-        System.out.println(diceCup.getResult());
+
     }
 
     public void setupGame() {
         guiController.createBoard();
         players = setupPlayers();
         guiController.setupPlayers(players);
+        guiController.setupDice();
 
     }
 

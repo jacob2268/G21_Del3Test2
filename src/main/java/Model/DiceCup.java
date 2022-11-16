@@ -4,12 +4,13 @@ import Model.Die;
 
 public class DiceCup extends Die {
 
-    Die die1, die2 = new Die();
+    Die die1 = new Die();
+    Die die2 = new Die();
     private int result;
 
-    public int roll() {
-        die1.setFaceValue((int) (Math.random() * 6) + 1);
-        die2.setFaceValue((int) (Math.random() * 6) + 1);
+    public int raffle() {
+        die1.roll();
+        die2.roll();
         result = die1.getFaceValue() + die2.getFaceValue();
         return result;
     }

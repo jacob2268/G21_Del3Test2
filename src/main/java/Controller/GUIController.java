@@ -41,6 +41,11 @@ public class GUIController {
         }
         return gui_players;
     }
+
+
+    public void setupDice() {
+        gui.setDice(1,2);
+    }
 }
 
 

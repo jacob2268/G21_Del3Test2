@@ -9,6 +9,12 @@ public class Die {
         faceValue = 1;
     }
 
+    public int roll()
+    {
+        faceValue = (int)(Math.random() * maxValue) + 1;
+
+        return faceValue;
+    }
     public int getFaceValue() {
         return faceValue;
     }
