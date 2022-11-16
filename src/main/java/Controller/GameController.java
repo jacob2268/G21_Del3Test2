@@ -11,10 +11,11 @@ import java.util.Arrays;
 public class GameController {
     GUIController guiController;
 
-    private DiceCup diceCup;
+    private DiceCup diceCup = new DiceCup();
 
     private Board gameBoard;
     private Player[] players;
+    private boolean winnerIsFound = false;
 
     public GameController() {
         this.guiController = new GUIController();
@@ -22,18 +23,25 @@ public class GameController {
 
     public void playGame() {
         setupGame();
-        playTurn();
+        while(!winnerIsFound) {
+            playTurn();
+        }
+
     }
 
     private void playTurn() {
-
+        for (int i = 0; i < players.length; i++) {
+            guiController.showMessage1();
+            guiController.rollDice(diceCup);
+            System.out.println(players[i].getName() + "'s turn. " + players[i].getName() + " throws " + diceCup.getResult());
+            guiController.movePlayer(players[i]);
+        }
     }
 
     public void setupGame() {
         guiController.createBoard();
         players = setupPlayers();
         guiController.setupPlayers(players);
-        guiController.setupDice();
 
     }
 

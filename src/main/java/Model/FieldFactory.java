@@ -11,7 +11,7 @@ public class FieldFactory {
         return new GUI_Field[]
 
                 {
-                        new GUI_Refuge(),
+                        new GUI_Start("Start", "Modtag M2, når du passerer", "Modtag M2, når du passerer", Color.white, Color.black),
                         new GUI_Street("Burgerbaren", "M1", " ", "M1", Color.orange, Color.black),
                         new GUI_Street("Pizzahuset", "M1", " ", "M1", Color.orange, Color.black),
                         new GUI_Chance(),
@@ -23,7 +23,7 @@ public class FieldFactory {
                         new GUI_Chance(),
                         new GUI_Street("Skaterparken", "M1", " ", "M1", Color.yellow, Color.black),
                         new GUI_Street("Swimmingpoolen", "M1", " ", "M1", Color.yellow, Color.black),
-                        new GUI_Start("Start", "Modtag M2, når du passerer", "Modtag M2, når du passerer", Color.white, Color.black),
+                        new GUI_Refuge(),
                         new GUI_Street("Spillehallen", "M1", " ", "M1", Color.red, Color.black),
                         new GUI_Street("Biografen", "M1", " ", "M1", Color.red, Color.black),
                         new GUI_Chance(),

@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.DiceCup;
+import Model.Die;
 import Model.FieldFactory;
 import Model.Player;
 import gui_fields.*;
@@ -11,6 +13,9 @@ public class GUIController {
     private GUI_Field[] gui_fieldArray;
     private GUI gui;
     private GUI_Player[] gui_players;
+    private DiceCup diceCup;
+    private GUI_Car gui_car;
+    private Player[] players;
 
     public GUIController() {
         this.gui = new GUI(createBoard());
@@ -43,8 +48,19 @@ public class GUIController {
     }
 
 
-    public void setupDice() {
-        gui.setDice(1,2);
+    public void rollDice(DiceCup dicecup) {
+        this.diceCup = new DiceCup();
+        gui.setDice(dicecup.getFaceValueDie1(),dicecup.getFaceValueDie2());
+    }
+
+    public void showMessage1() {
+        gui.showMessage("Klik OK for at kaste");
+    }
+
+    public void movePlayer(Player[] players) {
+        this.gui_car = new GUI_Car();
+        gui_car.setPosition(gui.getFields()[diceCup.getResult()]);
+
     }
 }
 
