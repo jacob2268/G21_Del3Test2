@@ -35,11 +35,11 @@ public class GUIController {
     }
 
     public GUI_Player[] setupPlayers(Player[] players) {
-        this.gui_players = new GUI_Player[players.length];
-        for(int i = 0; i < players.length; i++) {
-            gui_players[i] = new GUI_Player(players[i].getName(),players[i].getBalance());
-            gui.addPlayer(gui_players[i]);
-            gui.getFields()[0].setCar(gui_players[i],true);
+        for (Player player : players) {
+            player.setGui_player(new GUI_Player(player.getName(), player.getBalance()));
+            gui.addPlayer(player.getGui_player());
+            player.setPosIndex(0);
+            player.getGui_player().getCar().setPosition(gui.getFields()[0]);
         }
         return gui_players;
     }
@@ -54,11 +54,12 @@ public class GUIController {
         gui.showMessage("Klik OK for at kaste");
     }
 
-    public void movePlayer(Player players) {
-        this.gui_car = new GUI_Car();
+    public void movePlayer(Player player, DiceCup diceCup) {
+        player.setPosIndex(player.getPosIndex()+diceCup.getResult());
+        player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosIndex()]);
+    }
 
-        gui_car.setPosition(gui.getFields()[diceCup.getResult()]);
-
+    public void doAction() {
     }
 }
 

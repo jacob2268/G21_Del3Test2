@@ -34,7 +34,9 @@ public class GameController {
             guiController.showMessage1();
             guiController.rollDice(diceCup);
             System.out.println(players[i].getName() + "'s turn. " + players[i].getName() + " throws " + diceCup.getResult());
-            guiController.movePlayer(players[i]);
+            guiController.movePlayer(players[i], diceCup);
+            guiController.doAction();
+
         }
     }
 
