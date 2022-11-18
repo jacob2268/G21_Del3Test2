@@ -21,9 +21,6 @@ public class GUIController {
         this.gui = new GUI(createBoard());
     }
 
-
-
-
     public GUI_Field[] createBoard() {
         FieldFactory fieldFactory = new FieldFactory();
         return fieldFactory.createBoard();
@@ -57,8 +54,9 @@ public class GUIController {
         gui.showMessage("Klik OK for at kaste");
     }
 
-    public void movePlayer(Player[] players) {
+    public void movePlayer(Player players) {
         this.gui_car = new GUI_Car();
+
         gui_car.setPosition(gui.getFields()[diceCup.getResult()]);
 
     }

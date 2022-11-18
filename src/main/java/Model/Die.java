@@ -5,6 +5,7 @@ public class Die {
     private final int maxValue = 6;
     private int faceValue;
 
+
     public Die() {
         faceValue = 1;
     }

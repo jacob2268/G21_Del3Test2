@@ -1,4 +1,10 @@
 package Model.Fields;
 
-public class VisitJail {
+import Model.Player;
+
+public class VisitJail extends Field {
+    @Override
+    public void doAction(Player player) {
+
+    }
 }
