@@ -1,5 +1,6 @@
 package Model;
 
+import Model.Fields.Properties;
 import gui_fields.GUI_Player;
 
 public class Player {
@@ -52,10 +53,11 @@ public class Player {
         return balance = balance - value;
     }
 
-//    public void payRent(int value, Player receiver, Player player) {
-//        player.subtractFromBalance(value);
-//        receiver.addToBalance(value);
-//    }
+    public void payRent(int value, Player player, Properties property) {
+        Player receiver = property.getOwner();
+        player.subtractFromBalance(value);
+        receiver.addToBalance(value);
+    }
 //
 //    public Player getPlayer(GUIController guiController, Player player) {
 //        Player owner = (Player) guiController.getOwnerName(player);

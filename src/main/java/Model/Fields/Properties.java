@@ -38,21 +38,17 @@ public class Properties extends Field {
         } else { // hvis er ejet
             if(!Objects.equals(guiController.getOwnerName(player), player.getName())) { // hvis spiller ikke selv ejer feltet
                 guiController.showRentMessage(player);
-                player.subtractFromBalance(price);
-                guiController.subtractFromGUIBalance(price,player);
-                player.getGui_player().setBalance(player.getGui_player().getBalance() - price);
-                System.out.println(getOwner(this));
-                // vi skal finde en måde at overføre et beløb fra den nuværende spiller til spilleren der ejer feltet
-//                 player.payRent(price,player.getPlayer(guiController,player),player);
+                player.payRent(price,player,this);
+                guiController.payRent(price,player,this);
 
             }else  // hvis spiller selv ejer feltet
                 guiController.showRentMessage(player);
 
         }
-        System.out.println("playerName: " + player.getName());
-        System.out.println("MODEL: " + player.getBalance());
-        System.out.println("PlayergetGUI: " + player.getGui_player().getBalance());
-        System.out.println("guicontroller: " + guiController.getGUIBalance(player));
+//        System.out.println("playerName: " + player.getName());
+//        System.out.println("MODEL: " + player.getBalance());
+//        System.out.println("PlayergetGUI: " + player.getGui_player().getBalance());
+//        System.out.println("guicontroller: " + guiController.getGUIBalance(player));
     }
 
     public boolean isOwned() {

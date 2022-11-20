@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.*;
+import Model.Fields.Properties;
 import gui_fields.*;
 import gui_main.GUI;
 
@@ -80,9 +81,7 @@ public class GUIController {
 
     }
     public void subtractFromGUIBalance(int value, Player player) {
-        System.out.println("subFromGUIBalance før: " + player.getGui_player().getBalance());
         player.getGui_player().setBalance(player.getGui_player().getBalance() - value);
-        System.out.println("subFromGUIBalance efter: " + player.getGui_player().getBalance());
     }
     public String getGUITitle(Player player) {
         return gui.getFields()[player.getPosition()].getTitle();
@@ -158,6 +157,12 @@ public class GUIController {
 
     public GUI_Player[] getGui_players() {
         return gui_players;
+    }
+
+    public void payRent(int value, Player player, Properties property) {
+        subtractFromGUIBalance(value,player);
+        addToGUIBalance(value,property.getOwner());
+
     }
 }
 
