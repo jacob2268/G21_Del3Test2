@@ -50,4 +50,7 @@ public class Board {
         return gameBoard[player.getPosition()].getOwner((Properties) gameBoard[player.getPosition()]);
     }
 
+    public Properties getProperty(Player player) {
+        return (Properties) gameBoard[player.getPosition()];
+    }
 }

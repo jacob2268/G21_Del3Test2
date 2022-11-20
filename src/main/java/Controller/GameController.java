@@ -2,6 +2,7 @@ package Controller;
 import Model.Board;
 import Model.ChanceCards;
 import Model.Fields.Field;
+import Model.Fields.Properties;
 import Model.Player;
 import Model.DiceCup;
 
@@ -36,13 +37,18 @@ public class GameController {
         // guiController.displayStandings(players[currentPlayer]);
     }
 
+
     private void playTurn() {
         for (currentPlayer = 0; currentPlayer < players.length; currentPlayer++) {
             guiController.showMessage1(players[currentPlayer]);
             guiController.rollDice(diceCup);
             guiController.movePlayer(players[currentPlayer], diceCup, gameBoard);
             doAction(players[currentPlayer]);
-            checkForWinner(players[currentPlayer]);
+            checkForWinner(players[currentPlayer]); // spiller runden færdig, selvom nogen går bankeråt. Skal rettes
+//            if(players[currentPlayer].getBalance() < 0 || property.getOwner().getBalance() < 0) {
+//                winnerIsFound = true;
+//                break;
+//            }
         }
     }
 

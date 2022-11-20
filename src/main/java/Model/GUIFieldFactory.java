@@ -24,7 +24,7 @@ public class GUIFieldFactory {
                         new GUI_Street("Skate park", "$2", " Skaterparken", "$2", Color.getHSBColor(3f,0.3f,0.5f), Color.black),
                         new GUI_Street("Swimming Pool", "$2", "Swimmingpoolen ", "$2", Color.getHSBColor(3f,0.3f,0.5f), Color.black),
                         new GUI_Refuge(),
-                        new GUI_Street("Arcade", "$3", "Spillehallen ", "$3", Color.getHSBColor(0.5f,0.5f,0.5f), Color.black),
+                        new GUI_Street("Arcade" ,"$3", "Spillehallen ", "$3", Color.getHSBColor(0.5f,0.5f,0.5f), Color.black),
                         new GUI_Street("Cinema", "$3", "Biografen ", "$3", Color.getHSBColor(0.5f,0.5f,0.5f), Color.black),
                         new GUI_Chance(),
                         new GUI_Street("Toy Store", "$3", "Legetøjsbutikken ", "$3", Color.cyan, Color.black),
@@ -33,8 +33,8 @@ public class GUIFieldFactory {
                         new GUI_Street("Bowling Alley", "$4", "Bowlinghallen", "$4", Color.getHSBColor(0.195f,0.68f,0.37f), Color.black),
                         new GUI_Street("Zoo", "$4", "Zoologisk Have ", "$4", Color.getHSBColor(0.195f,0.68f,0.37f), Color.black),
                         new GUI_Chance(),
-                        new GUI_Street("Water Park", "$4", "Vandlandet ", "$4", Color.magenta, Color.black),
-                        new GUI_Street("Beach Walk", "$4", "Strandpromenaden ", "$4", Color.magenta, Color.black)
+                        new GUI_Street("Water Park", "$4", "Vandlandet ", "$4", Color.getHSBColor(0.64f,0.46f,0.88f), Color.black),
+                        new GUI_Street("Beach Walk", "$4", "Strandpromenaden ", "$4", Color.getHSBColor(0.64f,0.46f,0.88f), Color.black)
                 };
 
     }

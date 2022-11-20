@@ -32,4 +32,5 @@ public abstract class Field {
     public Player getOwner(Properties property) {
         return property.getOwner();
     }
+
 }
