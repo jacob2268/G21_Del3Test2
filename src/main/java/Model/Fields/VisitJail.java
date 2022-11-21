@@ -7,6 +7,10 @@ import Model.Player;
 import gui_fields.GUI_Player;
 
 public class VisitJail extends Field {
+
+    private int jailfee = 1;
+
+
     public VisitJail(String title, String subText) {
         super(title, subText);
     }
@@ -16,6 +20,8 @@ public class VisitJail extends Field {
     @Override
     public void doAction(GUIController guiController, Player player, GameController gameController, ChanceCards chanceCards) {
         guiController.showVisitJailMessage(player);
+       // player.subtractFromBalance()
+
 
     }
 }
