@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.GUIController;
 import Model.Fields.Properties;
 import gui_fields.GUI_Player;
 
@@ -64,8 +65,9 @@ public class Player {
 //        return owner;
 //    }
 
-    public void recieveStartBonus(Player player) {
+    public void receivePassingStartBonus(Player player, GUIController guiController) {
         player.addToBalance(2);
+        guiController.addToGUIBalance(2,player);
     }
 }
 

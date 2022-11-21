@@ -33,7 +33,7 @@ public class GameController {
     }
 
     private void displayStandings() {
-        //skal laves en metode for at vise stillingen, når en er gået bankeråt
+        //skal laves en metode for at vise stillingen, når en er gået bankerot
         // guiController.displayStandings(players[currentPlayer]);
     }
 

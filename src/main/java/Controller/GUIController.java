@@ -66,11 +66,24 @@ public class GUIController {
 
     public void movePlayer(Player player, DiceCup diceCup, Board gameBoard) {
 
-        player.setPosition((player.getPosition()+diceCup.getResult()) % createGUIBoard().length);
-        gui.getFields()[player.getPosition()].setTitle(gameBoard.getTitle(player));
-        player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
-
+        player.setPosition(player.getPosition() + diceCup.getResult());
+        if(player.getPosition() >= createGUIBoard().length) {
+            player.setPosition((player.getPosition()) % createGUIBoard().length);
+            if(player.getPosition() == 0){
+                player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
+                gui.getFields()[player.getPosition()].setTitle(gameBoard.getTitle(player));
+            } else {
+                player.receivePassingStartBonus(player,this);
+                player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
+                gui.getFields()[player.getPosition()].setTitle(gameBoard.getTitle(player));
+                showPassingStartMessage();
+            }
+        }else {
+            gui.getFields()[player.getPosition()].setTitle(gameBoard.getTitle(player));
+            player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
+        }
     }
+
     public int getGUIBalance(Player player) {
         GUIPlayerBalance = player.getBalance();
         return GUIPlayerBalance;
@@ -107,20 +120,21 @@ public class GUIController {
         gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " and goes to jail");
     }
     public void showPropertiesMessage(Player player) {
-        gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " and lands on a property");
+        gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle());
     }
     public void showStartMessage(Player player) {
         gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " and receives $" + 2);
     }
 
-    public void showBuyingMessage(Player player) {
+    public void showBuyingMessage() {
         gui.showMessage("This property is free to buy... so you buy it! You pay ");
+    }
+    public void showPassingStartMessage() {
+        gui.showMessage("You passed start and received $2!");
     }
 
     public void updateFieldStatus(Player player) {
         ((GUI_Ownable) gui.getFields()[player.getPosition()]).setOwnerName(player.getName());
-
-
     }
 
     public void showRentMessage(Player player) {

@@ -29,8 +29,8 @@ public abstract class Field {
 
     public abstract void doAction(GUIController guiController, Player player, GameController gameController, ChanceCards chanceCards);
 
-    public Player getOwner(Properties property) {
-        return property.getOwner();
-    }
+//    public Player getOwner(Properties property) {
+//        return property.getOwner();
+//    }
 
 }
