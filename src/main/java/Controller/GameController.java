@@ -44,7 +44,7 @@ public class GameController {
             guiController.rollDice(diceCup);
             guiController.movePlayer(players[currentPlayer], diceCup, gameBoard);
             doAction(players[currentPlayer]);
-            checkForWinner(players[currentPlayer]); // spiller runden færdig, selvom nogen går bankeråt. Skal rettes
+            checkForWinner(players[currentPlayer]); // Spiller runden færdig, selvom nogen går bankerot. Skal rettes
 //            if(players[currentPlayer].getBalance() < 0 || property.getOwner().getBalance() < 0) {
 //                winnerIsFound = true;
 //                break;
@@ -81,7 +81,7 @@ public class GameController {
             else if(playerCount == 3) {players[i] = new Player(guiController.getUserString(), 0, 18);
             }
             else if(playerCount == 2) {
-                players[i] = new Player(guiController.getUserString(), 0, 2);
+                players[i] = new Player(guiController.getUserString(), 0, 20);
             }
         }
 
