@@ -26,7 +26,7 @@ public class Properties extends Field {
 
 
         if(!owned) { // hvis felt ikke er ejet
-            guiController.showBuyingMessage(player);
+            guiController.showBuyingMessage();
             guiController.updateFieldStatus(player);
             player.subtractFromBalance(price);
             guiController.subtractFromGUIBalance(price, player);
