@@ -73,8 +73,17 @@ public class GameController {
         int playerCount = guiController.getUserInteger();
         Player[] players = new Player[playerCount];
 
-        for(int i = 0; i < playerCount; i++)
-            players[i] = new Player(guiController.getUserString(), 0, 20);
+        for (int i = 0; i < playerCount; i++) {
+
+            if(playerCount == 4) {
+                players[i] = new Player(guiController.getUserString(), 0, 16);
+            }
+            else if(playerCount == 3) {players[i] = new Player(guiController.getUserString(), 0, 18);
+            }
+            else if(playerCount == 2) {
+                players[i] = new Player(guiController.getUserString(), 0, 2);
+            }
+        }
 
         return players;
     }
