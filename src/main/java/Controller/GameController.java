@@ -47,11 +47,6 @@ public class GameController {
             checkForWinner(players[currentPlayer]);
             if (winnerIsFound) return;
 
-//              spiller runden færdig, selvom nogen går bankeråt. Skal rettes
-//              if(players[currentPlayer].getBalance() < 0 || property.getOwner().getBalance() < 0) {
-//                winnerIsFound = true;
-//                break;
-//            }
         }
     }
 
