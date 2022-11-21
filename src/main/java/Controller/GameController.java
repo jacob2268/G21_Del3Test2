@@ -44,8 +44,11 @@ public class GameController {
             guiController.rollDice(diceCup);
             guiController.movePlayer(players[currentPlayer], diceCup, gameBoard);
             doAction(players[currentPlayer]);
-            checkForWinner(players[currentPlayer]); // spiller runden færdig, selvom nogen går bankeråt. Skal rettes
-//            if(players[currentPlayer].getBalance() < 0 || property.getOwner().getBalance() < 0) {
+            checkForWinner(players[currentPlayer]);
+            if (winnerIsFound) return;
+
+//              spiller runden færdig, selvom nogen går bankeråt. Skal rettes
+//              if(players[currentPlayer].getBalance() < 0 || property.getOwner().getBalance() < 0) {
 //                winnerIsFound = true;
 //                break;
 //            }
@@ -53,7 +56,7 @@ public class GameController {
     }
 
     private void checkForWinner(Player player) {
-        if(player.getBalance() < 0)
+        if(player.getBalance() <= 0)
             winnerIsFound = true;
     }
 
