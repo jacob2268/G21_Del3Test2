@@ -18,6 +18,8 @@ public class Jail extends Field {
     @Override
     public void doAction(GUIController guiController, Player player, GameController gameController, CardDeck cardDeck, Board gameBoard) {
         guiController.showJailMessage(player);
+        player.subtractFromBalance(1);
+        guiController.subtractFromGUIBalance(1, player);
 //        player.subtractFromBalance(bonus);
 //        guiController.subtractFromGUIBalance(bonus,player);
 

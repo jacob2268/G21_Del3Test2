@@ -50,21 +50,15 @@ public class CardDeck {
         // pt får betaler man for ejendomme selv når man bør få dem gratis
         switch (currentCard.getNumber()) {
             case 0:
-                System.out.println(currentCard.getNumber());
-                System.out.println(currentCard.getCardText());
                 guiController.movePlayerToField(player,0);
                 gameController.doAction(player);
                 break;
             case 1:
-                System.out.println(currentCard.getNumber());
-                System.out.println(currentCard.getCardText());
                 fieldsToMove = guiController.getButtonPressedMoveForward();
                 guiController.movePlayerChanceCard(player, gameBoard,Integer.parseInt(fieldsToMove));
                 gameController.doAction(player);
                 break;
             case 2:
-                System.out.println(currentCard.getNumber());
-                System.out.println(currentCard.getCardText());
                 fieldNameToMoveTo = guiController.getButtonPressedMoveToGroup(gameBoard,gameBoard.createBoard()[1].getTitle(),gameBoard.createBoard()[2].getTitle());
                 if(fieldNameToMoveTo  == gameBoard.createBoard()[1].getTitle())
                     fieldToMoveTo = 1;
@@ -73,8 +67,6 @@ public class CardDeck {
                 guiController.movePlayerToField(player,fieldToMoveTo);
                 break;
             case 3:
-                System.out.println(currentCard.getNumber());
-                System.out.println(currentCard.getCardText());
                 String choice = guiController.getButtonPressedCardOrMove();
                 if(choice == "Move 1 field forward")
                     guiController.movePlayerChanceCard(player,gameBoard,1);
@@ -83,14 +75,10 @@ public class CardDeck {
                 gameController.doAction(player);
                 break;
             case 4:
-                System.out.println(currentCard.getNumber());
-                System.out.println(currentCard.getCardText());
                 player.subtractFromBalance(2);
                 guiController.subtractFromGUIBalance(2,player);
                 break;
             case 5:
-                System.out.println(currentCard.getNumber());
-                System.out.println(currentCard.getCardText());
                 fieldNameToMoveTo = guiController.getButtonPressedMoveToGroups(gameBoard,"Orange","Olive",
                         gameBoard.createBoard()[1].getTitle(),gameBoard.createBoard()[2].getTitle(),
                         gameBoard.createBoard()[19].getTitle(),gameBoard.createBoard()[20].getTitle());
@@ -112,8 +100,6 @@ public class CardDeck {
                 gameController.doAction(player);
                 break;
             case 6:
-                System.out.println(currentCard.getNumber());
-                System.out.println(currentCard.getCardText());
                 fieldNameToMoveTo = guiController.getButtonPressedMoveToGroup(gameBoard,gameBoard.createBoard()[4].getTitle(),gameBoard.createBoard()[5].getTitle());
                 if(fieldNameToMoveTo  == gameBoard.createBoard()[4].getTitle())
                     fieldToMoveTo = 4;
@@ -123,23 +109,16 @@ public class CardDeck {
                 gameController.doAction(player);
                 break;
             case 7:
-                System.out.println(currentCard.getNumber());
-                System.out.println(currentCard.getCardText());
                 player.setGetOutOfJail(true);
                 break;
             case 8:
-                System.out.println(currentCard.getNumber());
-                System.out.println(currentCard.getCardText());
                 guiController.movePlayerToField(player,23);
                 gameController.doAction(player);
                 break;
             case 9: // HOW???
-                System.out.println(currentCard.getNumber());
-                System.out.println(currentCard.getCardText());
+
                 break;
             case 10:
-                System.out.println(currentCard.getNumber());
-                System.out.println(currentCard.getCardText());
                 fieldNameToMoveTo = guiController.getButtonPressedMoveToGroups(gameBoard,"pink","light-blue",
                         gameBoard.createBoard()[7].getTitle(),gameBoard.createBoard()[8].getTitle(),
                         gameBoard.createBoard()[22].getTitle(),gameBoard.createBoard()[23].getTitle());
@@ -161,14 +140,10 @@ public class CardDeck {
                 gameController.doAction(player);
                 break;
             case 11:
-                System.out.println(currentCard.getNumber());
-                System.out.println(currentCard.getCardText());
                 player.addToBalance(2);
                 guiController.subtractFromGUIBalance(2,player);
                 break;
             case 12:
-                System.out.println(currentCard.getNumber());
-                System.out.println(currentCard.getCardText());
                 fieldNameToMoveTo = guiController.getButtonPressedMoveToGroup(gameBoard,gameBoard.createBoard()[13].getTitle(),gameBoard.createBoard()[14].getTitle());
                 if(fieldNameToMoveTo  == gameBoard.createBoard()[13].getTitle())
                     fieldToMoveTo = 13;
@@ -178,8 +153,6 @@ public class CardDeck {
                 gameController.doAction(player);
                 break;
             case 13:
-                System.out.println(currentCard.getNumber());
-                System.out.println(currentCard.getCardText());
                 guiController.movePlayerToField(player,10);
                 gameController.doAction(player);
                 break;

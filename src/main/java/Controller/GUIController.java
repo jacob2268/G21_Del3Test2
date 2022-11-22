@@ -75,7 +75,7 @@ public class GUIController {
     }
     public void rollDice(DiceCup dicecup) {
         this.diceCup = new DiceCup();
-        gui.setDice(dicecup.getFaceValueDie1(),dicecup.getFaceValueDie2());
+        gui.setDie(dicecup.getFaceValueDie1());
     }
 
     public void showMessage1(Player player) {
@@ -151,6 +151,10 @@ public class GUIController {
         gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " and parks here until your next turn");
     }
 
+    public void showMessage(String message) {
+        gui.showMessage(message);
+    }
+
     public void showVisitJailMessage(Player player) {
         gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " and visits jail until your next turn");
     }
@@ -158,7 +162,7 @@ public class GUIController {
         gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " and picks up a chance card");
     }
     public void showJailMessage(Player player) {
-        gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " and goes to jail");
+        gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " loses $1");
     }
     public void showPropertiesMessage(Player player) {
         gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle());

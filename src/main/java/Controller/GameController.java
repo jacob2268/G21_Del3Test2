@@ -10,7 +10,6 @@ import java.util.Arrays;
 
 public class GameController {
     GUIController guiController;
-
     private DiceCup diceCup = new DiceCup();
 
     private Board gameBoard = new Board();
@@ -34,7 +33,6 @@ public class GameController {
             playTurn();
         }
         displayStandings();
-
     }
 
     private void displayStandings() {
@@ -50,7 +48,7 @@ public class GameController {
             guiController.movePlayer(players[currentPlayer], diceCup, gameBoard);
             doAction(players[currentPlayer]);
             //checkForWinner(players[currentPlayer]);
-            checkForWinner(players);
+            checkForWinner(players[currentPlayer]);
             if (winnerIsFound) return;
 
         }
@@ -59,21 +57,18 @@ public class GameController {
     private void checkForWinner(Player player) {
         if(player.getBalance() <= 0)
             winnerIsFound = true;
-
-
-
     }
 
-    Player losingPlayer;
-
-    private void checkForWinner (Player[] players){
-        for (Player player:players) {
-            if(player.getBalance() <= 0)
-             //   winnerIsFound = true;
-                losingPlayer = player;
-            // der mangler et sted hvor at man definere en losing player
-        }
-    }
+//    Player losingPlayer;
+//
+//    private void checkForWinner (Player[] players){
+//        for (Player player:players) {
+//            if(player.getBalance() <= 0)
+//             //   winnerIsFound = true;
+//                losingPlayer = player;
+//            // der mangler et sted hvor at man definere en losing player
+//        }
+//    }
 
 
     public void doAction(Player player) {
@@ -132,7 +127,7 @@ public class GameController {
     }
 }
 
-// tag spiller array, for hvert index tjekke balancen, også sortere ud fra den balance , lav et loop som checker hvilken spiller har mindst/flest penge
+// tag spiller array, for hvert index tjekke balancen, også sortere ud fra den balance, lav et loop som checker hvilken spiller har mindst/flest penge
 // hav 2 array
 
 
