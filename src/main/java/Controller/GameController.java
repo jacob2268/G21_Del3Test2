@@ -44,7 +44,8 @@ public class GameController {
             guiController.rollDice(diceCup);
             guiController.movePlayer(players[currentPlayer], diceCup, gameBoard);
             doAction(players[currentPlayer]);
-            checkForWinner(players[currentPlayer]);
+            //checkForWinner(players[currentPlayer]);
+            checkForWinner(players);
             if (winnerIsFound) return;
 
         }
@@ -53,7 +54,22 @@ public class GameController {
     private void checkForWinner(Player player) {
         if(player.getBalance() <= 0)
             winnerIsFound = true;
+
+
+
     }
+
+    Player losingPlayer;
+
+    private void checkForWinner (Player[] players){
+        for (Player player:players) {
+            if(player.getBalance() <= 0)
+             //   winnerIsFound = true;
+                losingPlayer = player;
+            // der mangler et sted hvor at man definere en losing player
+        }
+    }
+
 
     private void doAction(Player player) {
         board[player.getPosition()].doAction(guiController, players[currentPlayer],this,chanceCards);
@@ -79,7 +95,7 @@ public class GameController {
             else if(playerCount == 3) {players[i] = new Player(guiController.getUserString(), 0, 18);
             }
             else if(playerCount == 2) {
-                players[i] = new Player(guiController.getUserString(), 0, 2);
+                players[i] = new Player(guiController.getUserString(), 0, 20);
             }
         }
 
