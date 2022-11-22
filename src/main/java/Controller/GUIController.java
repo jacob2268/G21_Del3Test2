@@ -143,6 +143,8 @@ public class GUIController {
         }else
             gui.showMessage("This property is owned. You pay " + gui.getFields()[player.getPosition()].getSubText() + " to " + ((GUI_Ownable) gui.getFields()[player.getPosition()]).getOwnerName());
 
+        // Det er en god ide at lave en ny metode som ville hedde "showMessege" også giver de parametre med den besked
+
     }
     public String getOwnerName(Player player) {
         return ((GUI_Ownable) gui.getFields()[player.getPosition()]).getOwnerName();
@@ -176,6 +178,8 @@ public class GUIController {
     public void payRent(int value, Player player, Properties property) {
         subtractFromGUIBalance(value,player);
         addToGUIBalance(value,property.getOwner());
+
+
 
     }
 }

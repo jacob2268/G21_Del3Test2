@@ -6,6 +6,9 @@ import Model.Fields.Properties;
 import Model.Player;
 import Model.DiceCup;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class GameController {
     GUIController guiController;
 
@@ -105,5 +108,26 @@ public class GameController {
     public static int getCurrentPlayer() {
         return currentPlayer;
     }
+
+    public void sortedEndBalance (Player[] players) {
+        Player temp = null;
+
+        for (int i = 0; i < players.length; i++) {
+
+            for (int j = 1; j < (players.length - i); j++) {
+                if (players[j - 1].getBalance() > players[j].getBalance()) {
+                    temp = players[j - 1];
+                    players[i] = players[j];
+                    players[j] = temp;
+
+                }
+            }
+        }
+
+    }
 }
+
+// tag spiller array, for hvert index tjekke balancen, også sortere ud fra den balance , lav et loop som checker hvilken spiller har mindst/flest penge
+// hav 2 array
+
 
