@@ -1,13 +1,17 @@
 package Model;
 
 public class ChanceCards {
-
-
-    public ChanceCards(String Text) {
-
+    private String cardText;
+    private int number;
+    public ChanceCards(String cardText, int number) {
+        this.cardText = cardText;
+        this.number = number;
+    }
+    public String getCardText() {
+        return cardText;
     }
 
-    public String getCard() {
-        return "lol";
+    public int getNumber() {
+        return number;
     }
 }

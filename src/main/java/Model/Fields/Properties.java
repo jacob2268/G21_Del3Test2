@@ -2,6 +2,8 @@ package Model.Fields;
 
 import Controller.GUIController;
 import Controller.GameController;
+import Model.Board;
+import Model.CardDeck;
 import Model.ChanceCards;
 import Model.Player;
 
@@ -12,46 +14,80 @@ public class Properties extends Field {
     private boolean owned = false;
     private Player owner;
     private int price;
+    private boolean bothOwned;
+    private boolean forFree = false;
 
-    public Properties(String title, String subText, boolean owned, Player owner, int price) {
+    public Properties(String title, String subText, boolean owned, Player owner, int price, boolean bothOwned, boolean forFree) {
         super(title, subText);
         this.owned = owned;
         this.owner = owner;
         this.price = price;
+        this.bothOwned = bothOwned;
+        this.forFree = forFree;
     }
 
     @Override
-    public void doAction(GUIController guiController, Player player, GameController gameController, ChanceCards chanceCards) {
+    public void doAction(GUIController guiController, Player player, GameController gameController, CardDeck cardDeck, Board gameBoard) {
+
         guiController.showPropertiesMessage(player);
 
 
         if(!owned) { // hvis felt ikke er ejet
             //guiController.showMessage("Du køber feltet for "+ price )
-            guiController.showBuyingMessage();
-            guiController.updateFieldStatus(player);
-            player.subtractFromBalance(price);
-            guiController.subtractFromGUIBalance(price, player);
-            setOwner(player);
-            owned = true;
-            guiController.setBorderColor(player);
+                guiController.showBuyingMessage();
+                guiController.updateFieldStatus(player);
+                player.subtractFromBalance(price);
+                guiController.subtractFromGUIBalance(price, player);
+                setOwner(player);
+                owned = true;
+                guiController.setBorderColor(player);
+
+//            if(owner.getName() = ) {
+//                bothOwned = true;
+//            }
 
 
         } else { // hvis er ejet
             if(!Objects.equals(guiController.getOwnerName(player), player.getName())) { // hvis spiller ikke selv ejer feltet
-                guiController.showRentMessage(player);
-                player.payRent(price,player,this);
-                guiController.payRent(price,player,this);
+                if(bothOwned) { // hvis ejeren ejer begge felttyper
+                    player.payDoubleRent(price,player,this);
+                    guiController.payDoubleRent(price,player,this);
+                } else { // hvis ejeren kun ejer den ene af felttyperne
+                    guiController.showRentMessage(player);
+                    player.payRent(price,player,this);
+                    guiController.payRent(price,player,this);
+                }
 
             }else  // hvis spiller selv ejer feltet
                 guiController.showRentMessage(player);
 
         }
-//        System.out.println("playerName: " + player.getName());
-//        System.out.println("MODEL: " + player.getBalance());
-//        System.out.println("PlayergetGUI: " + player.getGui_player().getBalance());
-//        System.out.println("guicontroller: " + guiController.getGUIBalance(player));
     }
 
+    public void GetforFree(GUIController guiController, Player player, GameController gameController, CardDeck cardDeck, Board gameBoard) {
+        guiController.showPropertiesMessage(player);
+        if(!owned) { // hvis felt ikke er ejet får man det gratis
+                guiController.updateFieldStatus(player);
+                setOwner(player);
+                owned = true;
+                guiController.setBorderColor(player);
+
+        } else { // hvis er ejet
+            if(!Objects.equals(guiController.getOwnerName(player), player.getName())) { // hvis spiller ikke selv ejer feltet
+                if(bothOwned) { // hvis ejeren ejer begge felttyper
+                    player.payDoubleRent(price,player,this);
+                    guiController.payDoubleRent(price,player,this);
+                } else { // hvis ejeren kun ejer den ene af felttyperne
+                    guiController.showRentMessage(player);
+                    player.payRent(price,player,this);
+                    guiController.payRent(price,player,this);
+                }
+
+            }else  // hvis spiller selv ejer feltet
+                guiController.showRentMessage(player);
+
+        }
+    }
     public boolean isOwned() {
         return owned;
     }
@@ -74,5 +110,21 @@ public class Properties extends Field {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public boolean isBothOwned() {
+        return bothOwned;
+    }
+
+    public void setBothOwned(boolean bothOwned) {
+        this.bothOwned = bothOwned;
+    }
+
+    public boolean isForFree() {
+        return forFree;
+    }
+
+    public void setForFree(boolean forFree) {
+        this.forFree = forFree;
     }
 }

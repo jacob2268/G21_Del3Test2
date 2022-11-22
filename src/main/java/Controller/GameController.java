@@ -1,6 +1,5 @@
 package Controller;
-import Model.Board;
-import Model.ChanceCards;
+import Model.*;
 import Model.Fields.Field;
 import Model.Fields.Properties;
 import Model.Player;
@@ -15,9 +14,12 @@ public class GameController {
     private DiceCup diceCup = new DiceCup();
 
     private Board gameBoard = new Board();
+
+    private CardDeck cardDeck = new CardDeck();
+    private ChanceCards[] cards;
     private Player[] players;
     private Field[] board;
-    private ChanceCards chanceCards;
+    private Properties property;
     private boolean winnerIsFound = false;
 
     private static int currentPlayer;
@@ -74,8 +76,8 @@ public class GameController {
     }
 
 
-    private void doAction(Player player) {
-        board[player.getPosition()].doAction(guiController, players[currentPlayer],this,chanceCards);
+    public void doAction(Player player) {
+        board[player.getPosition()].doAction(guiController, players[currentPlayer],this, cardDeck, gameBoard);
     }
 
     public void setupGame() {
@@ -84,21 +86,24 @@ public class GameController {
         guiController.setupPlayers(players);
         gameBoard.createBoard();
         board = gameBoard.createBoard();
+        cardDeck.createCardDeck();
+        cards = cardDeck.createCardDeck();
+
     }
 
     public Player[] setupPlayers(){
-        int playerCount = guiController.getUserInteger();
+        int playerCount = guiController.getUserIntegerPlayerAmount();
         Player[] players = new Player[playerCount];
 
         for (int i = 0; i < playerCount; i++) {
 
             if(playerCount == 4) {
-                players[i] = new Player(guiController.getUserString(), 0, 16);
+                players[i] = new Player(guiController.getUserStringPlayerNames(), 0, 16);
             }
-            else if(playerCount == 3) {players[i] = new Player(guiController.getUserString(), 0, 18);
+            else if(playerCount == 3) {players[i] = new Player(guiController.getUserStringPlayerNames(), 0, 18);
             }
             else if(playerCount == 2) {
-                players[i] = new Player(guiController.getUserString(), 0, 20);
+                players[i] = new Player(guiController.getUserStringPlayerNames(), 0, 20);
             }
         }
 

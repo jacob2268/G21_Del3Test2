@@ -2,9 +2,10 @@ package Model.Fields;
 
 import Controller.GUIController;
 import Controller.GameController;
+import Model.Board;
+import Model.CardDeck;
 import Model.ChanceCards;
 import Model.Player;
-import gui_fields.GUI_Player;
 
 public class Jail extends Field {
 
@@ -15,7 +16,7 @@ public class Jail extends Field {
     }
 
     @Override
-    public void doAction(GUIController guiController, Player player, GameController gameController, ChanceCards chanceCards) {
+    public void doAction(GUIController guiController, Player player, GameController gameController, CardDeck cardDeck, Board gameBoard) {
         guiController.showJailMessage(player);
 //        player.subtractFromBalance(bonus);
 //        guiController.subtractFromGUIBalance(bonus,player);

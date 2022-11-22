@@ -2,9 +2,10 @@ package Model.Fields;
 
 import Controller.GUIController;
 import Controller.GameController;
+import Model.Board;
+import Model.CardDeck;
 import Model.ChanceCards;
 import Model.Player;
-import gui_fields.GUI_Player;
 
 public abstract class Field {
 
@@ -27,7 +28,7 @@ public abstract class Field {
         return subText;
     }
 
-    public abstract void doAction(GUIController guiController, Player player, GameController gameController, ChanceCards chanceCards);
+    public abstract void doAction(GUIController guiController, Player player, GameController gameController, CardDeck cardDeck, Board gameBoard);
 
 //    public Player getOwner(Properties property) {
 //        return property.getOwner();

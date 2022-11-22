@@ -1,6 +1,7 @@
 package Model;
 
 import Controller.GUIController;
+import Controller.GameController;
 import Model.Fields.Properties;
 import gui_fields.GUI_Player;
 
@@ -12,6 +13,7 @@ public class Player {
     private int position;
     private GUI_Player gui_player;
     private boolean getOutOfJail = false;
+    private boolean isBankrupt = false;
 
     public Player(String name, int position, int balance) {
         this.name = name;
@@ -59,6 +61,12 @@ public class Player {
         player.subtractFromBalance(value);
         receiver.addToBalance(value);
     }
+    public void payDoubleRent(int value, Player player, Properties property) {
+        Player receiver = property.getOwner();
+        player.subtractFromBalance(value*2);
+        receiver.addToBalance(value*2);
+    }
+
 //
 //    public Player getPlayer(GUIController guiController, Player player) {
 //        Player owner = (Player) guiController.getOwnerName(player);
@@ -68,6 +76,22 @@ public class Player {
     public void receivePassingStartBonus(Player player, GUIController guiController) {
         player.addToBalance(2);
         guiController.addToGUIBalance(2,player);
+    }
+
+    public boolean isBankrupt() {
+        return isBankrupt;
+    }
+
+    public void setBankrupt(boolean bankrupt) {
+        isBankrupt = bankrupt;
+    }
+
+    public boolean isGetOutOfJail() {
+        return getOutOfJail;
+    }
+
+    public void setGetOutOfJail(boolean getOutOfJail) {
+        this.getOutOfJail = getOutOfJail;
     }
 }
 

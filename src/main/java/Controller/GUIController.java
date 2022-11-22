@@ -6,7 +6,6 @@ import gui_fields.*;
 import gui_main.GUI;
 
 import java.awt.*;
-import java.util.Arrays;
 import java.util.Objects;
 
 
@@ -34,12 +33,31 @@ public class GUIController {
     public void makePropertyOwnable() {
     }
 
-    public int getUserInteger() {
+    public int getUserIntegerPlayerAmount() {
         return gui.getUserInteger("Enter number of players (2-4)",2,4);
     }
 
-    public String getUserString() {
+    public String getUserStringPlayerNames() {
         return gui.getUserString("Enter player" + " name");
+    }
+
+    public String getButtonPressedMoveForward() {
+        return gui.getUserButtonPressed("How many fields do you want to move forward?", "1", "2", "3", "4", "5");
+    }
+    public String getButtonPressedMoveToGroup(Board gameBoard, String option1, String option2) {
+        return gui.getUserButtonPressed("What property do you want to move to?", option1,option2);
+    }
+    public String getButtonPressedMoveToGroups(Board gameBoard, String color1, String color2, String option1, String option2, String option3, String option4) {
+        String color = gui.getUserButtonPressed("What color of properties would you like to go to?", color1,color2);
+        String choice;
+        if(color == color1)
+            choice = gui.getUserButtonPressed("What property do you want to move to?", option1,option2);
+        else
+            choice = gui.getUserButtonPressed("What property do you want to move to?", option3,option4);
+        return choice;
+    }
+    public String getButtonPressedCardOrMove() {
+        return gui.getUserButtonPressed("What would you like to do?", "Move 1 field forward", "Pick up another chance card");
     }
 
     public GUI_Player[] setupPlayers(Player[] players) {
@@ -62,6 +80,29 @@ public class GUIController {
 
     public void showMessage1(Player player) {
         gui.showMessage("Click OK for " + player.getName() + " to throw the dice");
+    }
+
+    public void movePlayerToField(Player player, int fieldToMoveTo) { // man modtager pt ikke startbonus hvis man bevæger sig til et specifikt felt som følge af et chancekort
+        player.setPosition(fieldToMoveTo);
+        player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
+    }
+    public void movePlayerChanceCard(Player player, Board gameBoard, int fieldsToMove) {
+        player.setPosition(player.getPosition() + fieldsToMove);
+        if(player.getPosition() >= createGUIBoard().length) {
+            player.setPosition((player.getPosition()) % createGUIBoard().length);
+            if(player.getPosition() == 0){
+                player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
+                gui.getFields()[player.getPosition()].setTitle(gameBoard.getTitle(player));
+            } else {
+                player.receivePassingStartBonus(player,this);
+                player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
+                gui.getFields()[player.getPosition()].setTitle(gameBoard.getTitle(player));
+                showPassingStartMessage();
+            }
+        }else {
+            gui.getFields()[player.getPosition()].setTitle(gameBoard.getTitle(player));
+            player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
+        }
     }
 
     public void movePlayer(Player player, DiceCup diceCup, Board gameBoard) {
@@ -157,18 +198,12 @@ public class GUIController {
         ((GUI_Ownable) gui.getFields()[player.getPosition()]).setBorder(getColor(player));
     }
 
-    public void displayStandings(Player player) {
-        gui.showMessage("The game is over because " + player.getName() + " is bankrupt");
-        int[] standings  = new int[gui_players.length];
+//    public void displayStandings(GameController gameController, Player player) {
+//        gui.showMessage("The game is over because " + gameController.getBankruptPlayer(player).getName() + " is bankrupt");
+//    }
 
-        for(int i = 0; i < gui_players.length; i++)
-            standings[i] = gui_players[i].getBalance();
-        Arrays.sort(standings);
-        System.out.println(standings);
-    }
-
-    public void displayChanceCard(ChanceCards chanceCards) {
-        gui.displayChanceCard("TEST CHANCE CARD");
+    public void displayChanceCard(CardDeck cardDeck) {
+        gui.displayChanceCard(cardDeck.createCardDeck()[cardDeck.getCurrentCard()].getCardText());
     }
 
     public GUI_Player[] getGui_players() {
@@ -180,6 +215,11 @@ public class GUIController {
         addToGUIBalance(value,property.getOwner());
 
 
+
+    }
+    public void payDoubleRent(int value, Player player, Properties property) {
+        subtractFromGUIBalance(value*2,player);
+        addToGUIBalance(value*2,property.getOwner());
 
     }
 }
