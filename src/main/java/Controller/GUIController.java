@@ -171,6 +171,17 @@ public class GUIController {
         gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " and receives $" + 2);
     }
 
+    public void showStandingMessage(Player[] player) {
+        String displayText = "";
+        int placeNum = player.length;
+        for (int i = 0; i < player.length; i++) {
+            String text = " place " + placeNum + " player " + player[i].getName();
+            displayText += text;
+            placeNum = placeNum - 1;
+        }
+        gui.showMessage(displayText);
+    }
+
     public void showBuyingMessage() {
         gui.showMessage("This property is free to buy... so you buy it! You pay ");
     }
@@ -218,6 +229,7 @@ public class GUIController {
         subtractFromGUIBalance(value,player);
         addToGUIBalance(value,property.getOwner());
 
+//
 
 
     }

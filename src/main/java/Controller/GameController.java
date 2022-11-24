@@ -31,13 +31,16 @@ public class GameController {
         setupGame();
         while(!winnerIsFound) {
             playTurn();
+if (winnerIsFound) {
+    displayStandings();
+}
         }
-        displayStandings();
     }
 
     private void displayStandings() {
-        //skal laves en metode for at vise stillingen, når en er gået bankerot
-        // guiController.displayStandings(players[currentPlayer]);
+       Player[] sortedPlayers = playersSorted(players);
+        guiController.showStandingMessage(sortedPlayers);
+
     }
 
 
@@ -93,7 +96,7 @@ public class GameController {
         for (int i = 0; i < playerCount; i++) {
 
             if(playerCount == 4) {
-                players[i] = new Player(guiController.getUserStringPlayerNames(), 0, 16);
+                players[i] = new Player(guiController.getUserStringPlayerNames(), 0, 4);
             }
             else if(playerCount == 3) {players[i] = new Player(guiController.getUserStringPlayerNames(), 0, 18);
             }
@@ -109,7 +112,31 @@ public class GameController {
         return currentPlayer;
     }
 
-    public void sortedEndBalance (Player[] players) {
+    public Player[] playersSorted(Player[] players){
+        sortEndBalance(players);
+        return players;
+    }
+
+    public void sortEndBalance (Player[] players) {
+        int indexM = 0;
+        do {
+            indexM = 0;
+            for (int i = 0; i < players.length-1; i++) {
+                if (players[i].getBalance() > players[i+1].getBalance()){
+                    Player tempPlayer = players[i];
+                    players[i] = players[i+1];
+                    players[i+1] = tempPlayer;
+                    indexM++;
+                }
+            }
+        }
+        while (indexM > 0);
+
+        }
+
+
+
+        /*
         Player temp = null;
 
         for (int i = 0; i < players.length; i++) {
@@ -123,7 +150,7 @@ public class GameController {
                 }
             }
         }
-
+return players;
     }
 }
 
