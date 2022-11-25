@@ -17,6 +17,8 @@ public class GameController {
     private Player[] players;
     private Field[] board;
     private Messages msg = new Messages();
+    private int playerCount = c.getGuiController().getUserIntegerPlayerAmount();
+
 
     private boolean winnerIsFound = false;
 
@@ -89,7 +91,6 @@ public class GameController {
     }
 
     public Player[] setupPlayers() {
-        int playerCount = c.getGuiController().getUserIntegerPlayerAmount();
         Player[] players = new Player[playerCount];
 
         for (int i = 0; i < playerCount; i++) {
@@ -130,6 +131,14 @@ public class GameController {
         }
         while (indexM > 0);
 
+    }
+
+    public Player[] getPlayers() {
+        return players;
+    }
+
+    public int getPlayerCount() {
+        return playerCount;
     }
 }
 

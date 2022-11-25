@@ -54,6 +54,13 @@ public class Board {
         return (Property) gameBoard[player.getPosition()];
     }
 
+    public Field getNextField(Player player) {
+        return createBoard()[player.getPosition()+1];
+    }
+    public Field getPreviousField(Player player) {
+        return createBoard()[player.getPosition()-1];
+    }
+
     public Field[] getGameBoard() {
         return gameBoard;
     }

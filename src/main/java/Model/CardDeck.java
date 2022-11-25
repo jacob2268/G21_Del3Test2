@@ -18,7 +18,7 @@ public class CardDeck {
                 new ChanceCards("Move up to 5 fields forward!",1),
                 new ChanceCards("Free property! Move to a orange colored property. If its unowned, you get it for free! " +
                         "If its owned, you pay rent to the owner",2), // fejl
-                new ChanceCards("You either move 1 field forward or take another chance card!",3), // fejl
+                new ChanceCards("You either move 1 field forward or take another chance card!",3),
                 new ChanceCards("You've eaten too much candy! Pay $2 to the bank.",4),
                 new ChanceCards("Free property! Move to a orange colored property or an olive colored property. " +
                         "If its unowned, you get it for free! If its owned, you pay rent to the owner",5), // fejl
@@ -39,12 +39,14 @@ public class CardDeck {
     }
 
     public int pickCard() {
-        setCurrentCard(createCardDeck()[new Random().nextInt(createCardDeck().length)]);
+//        setCurrentCard(createCardDeck()[new Random().nextInt(createCardDeck().length)]);
+        setCurrentCard(createCardDeck()[9]);
+
         return currentCard.getNumber();
     }
 
+
     public void doCardAction(Player player, Constants c, GameController gameController) {
-        // pt får betaler man for ejendomme selv når man bør få dem gratis
         switch (currentCard.getNumber()) {
             case 0:
                 c.getGuiController().movePlayerToField(player,0);
@@ -63,14 +65,18 @@ public class CardDeck {
                 else
                     fieldToMoveTo = 2;
                 c.getGuiController().movePlayerToField(player,fieldToMoveTo);
+                gameController.doAction(player);
                 break;
             case 3:
                 String choice = c.getGuiController().getButtonPressedCardOrMove();
-                if(choice == "Move 1 field forward")
-                    c.getGuiController().movePlayerChanceCard(player,c,1);
-                else
+                if(choice == "Move 1 field forward") {
+                    c.getGuiController().movePlayerChanceCard(player, c, 1);
+                    gameController.doAction(player);
+                }
+                else {
+                    pickCard();
                     doCardAction(player,c,gameController);
-                gameController.doAction(player);
+                }
                 break;
             case 4:
                 player.subtractFromBalance(2);
@@ -113,8 +119,13 @@ public class CardDeck {
                 c.getGuiController().movePlayerToField(player,23);
                 gameController.doAction(player);
                 break;
-            case 9: // HOW???
-
+            case 9:
+                for(int i = 0; i < gameController.getPlayers().length;i++){
+                    gameController.getPlayers()[i].subtractFromBalance(1);
+                    c.getGuiController().subtractFromGUIBalance(1,gameController.getPlayers()[i]);
+                }
+                player.addToBalance(gameController.getPlayerCount());
+                c.getGuiController().addToGUIBalance(gameController.getPlayerCount(),player);
                 break;
             case 10:
                 fieldNameToMoveTo = c.getGuiController().getButtonPressedMoveToGroups("pink","light-blue",
