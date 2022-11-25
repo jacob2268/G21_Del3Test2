@@ -15,10 +15,6 @@ public class Messages {
         return (displayText);
     }
 
-//    public String VisitJail(Player player) {
-//        return player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " and visits jail until your next turn";
-//    }
-
     public String passingStart() {
         return "You passed start and received $2!";
     }

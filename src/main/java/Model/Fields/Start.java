@@ -3,7 +3,7 @@ package Model.Fields;
 import Controller.GameController;
 import Model.*;
 
-public class Start extends Field {
+public class  Start extends Field {
     private int bonus = 2;
 
 
@@ -13,7 +13,6 @@ public class Start extends Field {
 
     }
 
-    // lige nu får man kun $2 når man lander på start og ikke når man passerer start
     @Override
     public void doAction(Constants c, Player player,GameController gameController) {
         c.getGuiController().showMessage(c.getMsg().startMessage(player.getName()));
@@ -22,7 +21,4 @@ public class Start extends Field {
 
     }
 
-    public int getBonus() {
-        return bonus;
-    }
 }

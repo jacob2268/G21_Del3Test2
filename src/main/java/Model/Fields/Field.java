@@ -21,15 +21,6 @@ public abstract class Field {
         return title;
     }
 
-    public String getSubText() {
-        return subText;
-    }
-
-    public Object getSpecial(){
-        return this;
-    }
-
-    //Medeater søg på google
     public abstract void doAction(Constants constants, Player player, GameController gameController);
 
 

@@ -5,8 +5,6 @@ import Model.Player;
 import Model.DiceCup;
 
 public class GameController {
-    GUIController guiController;
-
     private Constants c = new Constants();
     private ChanceCards[] cards;
     private Player[] players;
@@ -45,8 +43,6 @@ public class GameController {
             c.getGuiController().rollDice(c);
             c.getGuiController().movePlayer(c,players[currentPlayer]);
             doAction(players[currentPlayer]);
-            System.out.println(players[currentPlayer].getPosition());
-            //checkForWinner(players[currentPlayer]);
             checkForWinner(players[currentPlayer]);
             if (loserIsFound) return;
 
@@ -57,18 +53,6 @@ public class GameController {
         if (player.getBalance() <= 0)
             loserIsFound = true;
     }
-
-//    Player losingPlayer;
-//
-//    private void checkForWinner (Player[] players){
-//        for (Player player:players) {
-//            if(player.getBalance() <= 0)
-//             //   winnerIsFound = true;
-//                losingPlayer = player;
-//            // der mangler et sted hvor at man definere en losing player
-//        }
-//    }
-
 
     public void doAction(Player player) {
         board[player.getPosition()].doAction(c,player,this);
@@ -101,11 +85,6 @@ public class GameController {
 
         return players;
     }
-
-    public static int getCurrentPlayer() {
-        return currentPlayer;
-    }
-
     public Player[] playersSorted(Player[] players) {
         sortEndBalance(players);
         return players;

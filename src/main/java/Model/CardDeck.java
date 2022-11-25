@@ -7,7 +7,6 @@ import java.util.Random;
 
 public class CardDeck {
     private ChanceCards currentCard;
-//    = createCardDeck()[1];
     private String fieldsToMove;
     private int fieldToMoveTo;
     private String fieldNameToMoveTo;
@@ -154,7 +153,7 @@ public class CardDeck {
                 break;
             case 11:
                 player.addToBalance(2);
-                c.getGuiController().subtractFromGUIBalance(2,player);
+                c.getGuiController().addToGUIBalance(2,player);
                 break;
             case 12:
                 fieldNameToMoveTo = c.getGuiController().getButtonPressedMoveToGroup(c.getGameBoard().createBoard()[13].getTitle(),c.getGameBoard().createBoard()[14].getTitle());

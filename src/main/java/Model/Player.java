@@ -13,7 +13,6 @@ public class Player {
     private int position;
     private GUI_Player gui_player;
     private boolean getOutOfJail = false;
-    private boolean isBankrupt = false;
     private boolean getPropertyFree = false;
 
     private Field field;
@@ -71,23 +70,9 @@ public class Player {
         receiver.addToBalance(value*2);
     }
 
-//
-//    public Player getPlayer(GUIController guiController, Player player) {
-//        Player owner = (Player) guiController.getOwnerName(player);
-//        return owner;
-//    }
-
     public void receivePassingStartBonus(Player player, GUIController guiController) {
         player.addToBalance(2);
         guiController.addToGUIBalance(2,player);
-    }
-
-    public boolean isBankrupt() {
-        return isBankrupt;
-    }
-
-    public void setBankrupt(boolean bankrupt) {
-        isBankrupt = bankrupt;
     }
 
     public boolean isGetOutOfJail() {

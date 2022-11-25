@@ -49,22 +49,39 @@ public class Property extends Field {
                 owned = true;
                 c.getGuiController().setBorderColor(player);
             }
-            if(player.getPosition() < c.getGameBoard().getGameBoard().length) {
-                // hvis feltet, som spilleren står på
-                if (c.getGameBoard().getGameBoard()[player.getPosition()].getClass() == c.getGameBoard().getGameBoard()[player.getPosition() + 1].getClass()) {
-                    if (c.getGuiController().getOwnerName(player.getPosition()) == c.getGuiController().getOwnerName(player.getPosition() + 1)) {
-                        setBothOwned(true);
-                        c.getGameBoard().getProperty(player.getPosition() + 1).setBothOwned(true);
-                    }
-                }
-            } else {
-                if (c.getGameBoard().getGameBoard()[player.getPosition()].getClass() == c.getGameBoard().getGameBoard()[player.getPosition() - 1].getClass()) {
-                    if (c.getGuiController().getOwnerName(player.getPosition()) == c.getGuiController().getOwnerName(player.getPosition() - 1)) {
-                        setBothOwned(true);
-                        c.getGameBoard().getProperty(player.getPosition() - 1).setBothOwned(true);
+//            if(player.getPosition() < c.getGameBoard().getGameBoard().length) {
+//                // hvis feltet, som spilleren står på
+//                if (c.getGameBoard().getGameBoard()[player.getPosition()].getClass() == c.getGameBoard().getGameBoard()[player.getPosition() + 1].getClass()) {
+//                    if (c.getGuiController().getOwnerName(player.getPosition()) == c.getGuiController().getOwnerName(player.getPosition() + 1)) {
+//                        setBothOwned(true);
+//                        c.getGameBoard().getProperty(player.getPosition() + 1).setBothOwned(true);
+//                    }
+//                }
+//            } else {
+//                if (c.getGameBoard().getGameBoard()[player.getPosition()].getClass() == c.getGameBoard().getGameBoard()[player.getPosition() - 1].getClass()) {
+//                    if (c.getGuiController().getOwnerName(player.getPosition()) == c.getGuiController().getOwnerName(player.getPosition() - 1)) {
+//                        setBothOwned(true);
+//                        c.getGameBoard().getProperty(player.getPosition() - 1).setBothOwned(true);
+//                    }
+//                }
+//            }
+            if(player.getPosition() != 0){
+                if(c.getGameBoard().getGameBoard()[player.getPosition()].getClass() == c.getGameBoard().getGameBoard()[player.getPosition()-1].getClass()) {
+                    if(c.getGuiController().getOwnerName(player.getPosition()) == c.getGuiController().getOwnerName(player.getPosition()-1)){
+                        this.setBothOwned(true);
+                        c.getGameBoard().getProperty(player.getPosition()-1).setBothOwned(true);
                     }
                 }
             }
+            if(player.getPosition() != 23) {
+                if (c.getGameBoard().getGameBoard()[player.getPosition()].getClass() == c.getGameBoard().getGameBoard()[player.getPosition() + 1].getClass()) {
+                    if (c.getGuiController().getOwnerName(player.getPosition()) == c.getGuiController().getOwnerName(player.getPosition()+1)) {
+                        this.setBothOwned(true);
+                        c.getGameBoard().getProperty(player.getPosition() + 1).setBothOwned(true);
+                    }
+                }
+            }
+
 
         } else { // hvis er ejet
             if(!Objects.equals(c.getGuiController().getOwnerName(player.getPosition()), player.getName())) { // hvis spiller ikke selv ejer feltet
@@ -85,37 +102,6 @@ public class Property extends Field {
         player.setGetPropertyFree(false);
     }
 
-//    public void getForFree(GUIController guiController, Player player, GameController gameController, CardDeck cardDeck, Board gameBoard) {
-//        guiController.showPropertiesMessage(player);
-//        if(!owned) { // hvis felt ikke er ejet får man det gratis
-//                guiController.updateFieldStatus(player);
-//                setOwner(player);
-//                owned = true;
-//                guiController.setBorderColor(player);
-//
-//        } else { // hvis er ejet
-//            if(!Objects.equals(guiController.getOwnerName(player), player.getName())) { // hvis spiller ikke selv ejer feltet
-//                if(bothOwned) { // hvis ejeren ejer begge felttyper
-//                    player.payDoubleRent(price,player,this);
-//                    guiController.payDoubleRent(price,player,this);
-//                } else { // hvis ejeren kun ejer den ene af felttyperne
-//                    c.getMsg().payRentMessage(this.getPrice(),c.getGuiController().getOwnerName(player));
-//                    player.payRent(price,player,this);
-//                    guiController.payRent(price,player,this);
-//                }
-//
-//            }else  // hvis spiller selv ejer feltet
-//                guiController.showRentMessage(player);
-//
-//        }
-//    }
-    public boolean isOwned() {
-        return owned;
-    }
-
-    public void setOwned(boolean owned) {
-        this.owned = owned;
-    }
 
     public Player getOwner() {
         return owner;
@@ -125,29 +111,9 @@ public class Property extends Field {
         this.owner = owner;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public boolean isBothOwned() {
-        return bothOwned;
-    }
 
     public void setBothOwned(boolean bothOwned) {
         this.bothOwned = bothOwned;
-    }
-
-    public boolean isForFree() {
-        return forFree;
-    }
-
-    public void setForFree(boolean forFree) {
-        this.forFree = forFree;
     }
 
 }

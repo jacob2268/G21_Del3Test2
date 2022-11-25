@@ -39,33 +39,14 @@ public class Board {
         return gameBoard[fieldIndex].getTitle();
     }
 
-    public String getSubText(int fieldIndex) {
-        return gameBoard[fieldIndex].getSubText();
-    }
-//    public int getRent(Player player) {
-//        return gameBoard[player.getPosIndex()].g;
-//    }
-
-    public Field getField(int fieldNumber) {
-        return gameBoard[fieldNumber];
-    }
 
     public Property getProperty(int fieldIndex) {
         return (Property) gameBoard[fieldIndex];
     }
 
-    public Field getNextField(int fieldIndex) {
-        return createBoard()[fieldIndex+1];
-    }
-    public Field getPreviousField(int fieldIndex) {
-        return createBoard()[fieldIndex-1];
-    }
 
     public Field[] getGameBoard() {
         return gameBoard;
     }
 
-    public void setGameBoard(Field[] gameBoard) {
-        this.gameBoard = gameBoard;
-    }
 }

@@ -20,10 +20,6 @@ public class Die {
         return faceValue;
     }
 
-    public void setFaceValue(int value){
-        faceValue = value;
-    }
-
     public String toString()
     {
         String result = Integer.toString(faceValue);

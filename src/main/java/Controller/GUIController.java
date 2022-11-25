@@ -11,11 +11,9 @@ import java.util.Objects;
 
 public class GUIController {
 
-    private GUI_Field[] gui_fieldArray;
     private GUI gui;
     private GUI_Player[] gui_players;
     private Color[] carColors = {Color.red, Color.BLUE, Color.YELLOW, Color.GREEN};
-    private int GUIPlayerBalance;
 
 
 
@@ -121,11 +119,6 @@ public class GUIController {
         }
     }
 
-    public int getGUIBalance(Player player) {
-        GUIPlayerBalance = player.getBalance();
-        return GUIPlayerBalance;
-    }
-
     public void addToGUIBalance(int value, Player player) {
         player.getGui_player().setBalance(player.getGui_player().getBalance() + value);
 
@@ -133,53 +126,16 @@ public class GUIController {
     public void subtractFromGUIBalance(int value, Player player) {
         player.getGui_player().setBalance(player.getGui_player().getBalance() - value);
     }
-    public String getGUITitle(Player player) {
-        return gui.getFields()[player.getPosition()].getTitle();
-    }
-    public String getGUISubText(Player player) {
-        return gui.getFields()[player.getPosition()].getSubText();
-    }
-    public String getGUIDescription(Player player) {
-        return gui.getFields()[player.getPosition()].getDescription();
-    }
-
-
     public void showMessage(String message) {
         gui.showMessage(message);
     }
 
-
-
-    public void showPropertiesMessage(Player player) {
-        gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle());
-    }
-
-
     public void updateFieldStatus(Player player) {
         ((GUI_Ownable) gui.getFields()[player.getPosition()]).setOwnerName(player.getName());
     }
-
     public String getOwnerName(int fieldIndex) {
         return ((GUI_Ownable) gui.getFields()[fieldIndex]).getOwnerName();
     }
-    public String getNextFieldOwnerName(int fieldIndex) {
-
-
-
-        try {
-            ((GUI_Ownable) gui.getFields()[fieldIndex+1]).getOwnerName();
-        }
-        catch (ClassCastException e) {
-            getPrevFieldOwnerName(fieldIndex);
-        }
-        return ((GUI_Ownable) gui.getFields()[fieldIndex+1]).getOwnerName();
-    }
-    public String getPrevFieldOwnerName(int fieldIndex) {
-        return ((GUI_Ownable) gui.getFields()[fieldIndex-1]).getOwnerName();
-
-    }
-
-
 
     public Color getColor(Player player){
         return player.getGui_player().getPrimaryColor();
@@ -187,35 +143,19 @@ public class GUIController {
     public void setBorderColor(Player player) {
         ((GUI_Ownable) gui.getFields()[player.getPosition()]).setBorder(getColor(player));
     }
-
-
-
     public void displayChanceCard(CardDeck cardDeck) {
         gui.displayChanceCard(cardDeck.createCardDeck()[cardDeck.getCurrentCard()].getCardText());
     }
 
-    public GUI_Player[] getGui_players() {
-        return gui_players;
-    }
 
     public void payRent(int value, Player player, Property property) {
         subtractFromGUIBalance(value,player);
         addToGUIBalance(value,property.getOwner());
-
-//
-
-
     }
     public void payDoubleRent(int value, Player player, Property property) {
         subtractFromGUIBalance(value*2,player);
         addToGUIBalance(value*2,property.getOwner());
-
     }
-
-    public void showPayJailMessage() {
-        gui.showMessage("You pay $1 to get out of jail :(");
-    }
-
 
 }
 
