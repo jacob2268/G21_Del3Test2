@@ -19,6 +19,8 @@ public class GameController {
     private Player[] players;
     private Field[] board;
     private Properties property;
+    private Messages msg = new Messages();
+
     private boolean winnerIsFound = false;
 
     private static int currentPlayer;
@@ -39,7 +41,7 @@ public class GameController {
 
     private void displayStandings() {
         Player[] sortedPlayers = playersSorted(players);
-        guiController.showStandingMessage(sortedPlayers);
+        guiController.showMessage(msg.StandingMessage(sortedPlayers));
 
     }
 

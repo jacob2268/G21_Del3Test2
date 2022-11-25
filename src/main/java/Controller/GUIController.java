@@ -18,7 +18,7 @@ public class GUIController {
     private Color[] carColors = {Color.red, Color.BLUE, Color.YELLOW, Color.GREEN};
     private int GUIPlayerBalance;
 
-
+    private Messages msg = new Messages();
 
 
     public GUIController() {
@@ -97,7 +97,7 @@ public class GUIController {
                 player.receivePassingStartBonus(player,this);
                 player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
                 gui.getFields()[player.getPosition()].setTitle(gameBoard.getTitle(player));
-                showPassingStartMessage();
+                showMessage(msg.passingStart());
             }
         }else {
             gui.getFields()[player.getPosition()].setTitle(gameBoard.getTitle(player));
@@ -117,7 +117,7 @@ public class GUIController {
                 player.receivePassingStartBonus(player,this);
                 player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
                 gui.getFields()[player.getPosition()].setTitle(gameBoard.getTitle(player));
-                showPassingStartMessage();
+                showMessage(msg.passingStart());
             }
         }else {
             gui.getFields()[player.getPosition()].setTitle(gameBoard.getTitle(player));
@@ -171,22 +171,8 @@ public class GUIController {
         gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " and receives $" + 2);
     }
 
-    public void showStandingMessage(Player[] player) {
-        String displayText = "Final standings:";
-        int placeNum = 1;
-        for (int i = player.length-1; i >= 0; i--) {
-            String text ="\n" + placeNum + ": " + player[i].getName();
-            displayText += text;
-            placeNum = placeNum + 1;
-        }
-        gui.showMessage(displayText);
-    }
-
     public void showBuyingMessage() {
         gui.showMessage("This property is free to buy... so you buy it! You pay ");
-    }
-    public void showPassingStartMessage() {
-        gui.showMessage("You passed start and received $2!");
     }
 
     public void updateFieldStatus(Player player) {
