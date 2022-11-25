@@ -22,4 +22,48 @@ public class Messages {
     public String passingStart() {
         return "You passed start and received $2!";
     }
+
+    public String startMessage(String playerName) {
+        return playerName + " lands on Start and receives $" + 2;
+    }
+    public String chanceMessage(String playerName) {
+        return playerName + " lands on chance and picks up a chance card";
+    }
+    public String visitJailMessage(String playerName) {
+        return playerName + " lands on visit jail and visits jail until your next turn";
+    }
+
+    public String propertyMessage(String playerName) {
+        return playerName + " lands on a property";
+    }
+
+    public String buyingMessage(int price) {
+        return "This property is free to buy... so you buy it! You pay $" + price;
+    }
+
+    public String ownPropertyMessage() {
+
+            return "This property is owned by yourself";
+    }
+    public String payRentMessage(int rent, String ownerName) {
+        return "This property is owned. You pay $" + rent + " to " + ownerName;
+    }
+
+    public String landOnjailMessage(String playerName) {
+        return playerName + " lands on jail.";
+    }
+
+    public String getOutOfJailMessage() {
+        return "You have a Get Out Of Jail Free card! You do not pay the jail fee!";
+    }
+
+    public String payJailMessage() {
+        return "You pay $1 to get out of jail next turn";
+    }
+
+
+    public String parkingMessage() {
+        return "You park here until your next turn";
+    }
 }
+

@@ -1,8 +1,8 @@
 package Model;
 
 import Controller.GUIController;
-import Controller.GameController;
-import Model.Fields.Properties;
+import Model.Fields.Field;
+import Model.Fields.Property;
 import gui_fields.GUI_Player;
 
 public class Player {
@@ -15,10 +15,13 @@ public class Player {
     private boolean getOutOfJail = false;
     private boolean isBankrupt = false;
 
+    private Field field;
+
     public Player(String name, int position, int balance) {
         this.name = name;
         this.position = position;
         this.balance = balance;
+
 
     }
 
@@ -56,12 +59,12 @@ public class Player {
         return balance = balance - value;
     }
 
-    public void payRent(int value, Player player, Properties property) {
+    public void payRent(int value, Player player, Property property) {
         Player receiver = property.getOwner();
         player.subtractFromBalance(value);
         receiver.addToBalance(value);
     }
-    public void payDoubleRent(int value, Player player, Properties property) {
+    public void payDoubleRent(int value, Player player, Property property) {
         Player receiver = property.getOwner();
         player.subtractFromBalance(value*2);
         receiver.addToBalance(value*2);
@@ -92,6 +95,14 @@ public class Player {
 
     public void setGetOutOfJail(boolean getOutOfJail) {
         this.getOutOfJail = getOutOfJail;
+    }
+
+    public Field getField() {
+        return field;
+    }
+
+    public void setField(Field field) {
+        this.field = field;
     }
 }
 

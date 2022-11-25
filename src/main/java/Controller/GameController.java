@@ -1,12 +1,9 @@
 package Controller;
 import Model.*;
 import Model.Fields.Field;
-import Model.Fields.Properties;
+import Model.Fields.Property;
 import Model.Player;
 import Model.DiceCup;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class GameController {
     GUIController guiController;
@@ -14,11 +11,11 @@ public class GameController {
 
     private Board gameBoard = new Board();
 
+    private Constants c = new Constants();
     private CardDeck cardDeck = new CardDeck();
     private ChanceCards[] cards;
     private Player[] players;
     private Field[] board;
-    private Properties property;
     private Messages msg = new Messages();
 
     private boolean winnerIsFound = false;
@@ -26,7 +23,7 @@ public class GameController {
     private static int currentPlayer;
 
     public GameController() {
-        this.guiController = new GUIController();
+        c.getGuiController();
     }
 
     public void playGame() {
@@ -41,16 +38,16 @@ public class GameController {
 
     private void displayStandings() {
         Player[] sortedPlayers = playersSorted(players);
-        guiController.showMessage(msg.StandingMessage(sortedPlayers));
+        c.getGuiController().showMessage(c.getMsg().StandingMessage(sortedPlayers));
 
     }
 
 
     private void playTurn() {
         for (currentPlayer = 0; currentPlayer < players.length; currentPlayer++) {
-            guiController.showMessage1(players[currentPlayer]);
-            guiController.rollDice(diceCup);
-            guiController.movePlayer(players[currentPlayer], diceCup, gameBoard);
+            c.getGuiController().showMessage1(players[currentPlayer]);
+            c.getGuiController().rollDice(c);
+            c.getGuiController().movePlayer(c,players[currentPlayer]);
             doAction(players[currentPlayer]);
             //checkForWinner(players[currentPlayer]);
             checkForWinner(players[currentPlayer]);
@@ -77,32 +74,32 @@ public class GameController {
 
 
     public void doAction(Player player) {
-        board[player.getPosition()].doAction(guiController, players[currentPlayer], this, cardDeck, gameBoard);
+        board[player.getPosition()].doAction(c,player,this);
     }
 
     public void setupGame() {
-        guiController.createGUIBoard();
+        c.getGuiController().createGUIBoard();
         players = setupPlayers();
-        guiController.setupPlayers(players);
-        gameBoard.createBoard();
-        board = gameBoard.createBoard();
-        cardDeck.createCardDeck();
-        cards = cardDeck.createCardDeck();
+        c.getGuiController().setupPlayers(players);
+        c.getGameBoard().createBoard();
+        board = c.getGameBoard().createBoard();
+        c.getCardDeck().createCardDeck();
+        cards = c.getCardDeck().createCardDeck();
 
     }
 
     public Player[] setupPlayers() {
-        int playerCount = guiController.getUserIntegerPlayerAmount();
+        int playerCount = c.getGuiController().getUserIntegerPlayerAmount();
         Player[] players = new Player[playerCount];
 
         for (int i = 0; i < playerCount; i++) {
 
             if (playerCount == 4) {
-                players[i] = new Player(guiController.getUserStringPlayerNames(), 0, 4);
+                players[i] = new Player(c.getGuiController().getUserStringPlayerNames(), 0, 4);
             } else if (playerCount == 3) {
-                players[i] = new Player(guiController.getUserStringPlayerNames(), 0, 18);
+                players[i] = new Player(c.getGuiController().getUserStringPlayerNames(), 0, 18);
             } else if (playerCount == 2) {
-                players[i] = new Player(guiController.getUserStringPlayerNames(), 0, 20);
+                players[i] = new Player(c.getGuiController().getUserStringPlayerNames(), 0, 20);
             }
         }
 

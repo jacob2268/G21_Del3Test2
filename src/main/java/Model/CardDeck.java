@@ -2,9 +2,6 @@ package Model;
 
 import Controller.GUIController;
 import Controller.GameController;
-import Model.Fields.Field;
-import Model.Fields.Properties;
-import gui_main.GUI;
 
 import java.util.Random;
 
@@ -46,42 +43,43 @@ public class CardDeck {
         return currentCard.getNumber();
     }
 
-    public void doCardAction(Player player, GUIController guiController, Board gameBoard, GameController gameController) {
+    public void doCardAction(Player player, Constants c, GameController gameController) {
         // pt får betaler man for ejendomme selv når man bør få dem gratis
         switch (currentCard.getNumber()) {
             case 0:
-                guiController.movePlayerToField(player,0);
+                c.getGuiController().movePlayerToField(player,0);
                 gameController.doAction(player);
                 break;
             case 1:
-                fieldsToMove = guiController.getButtonPressedMoveForward();
-                guiController.movePlayerChanceCard(player, gameBoard,Integer.parseInt(fieldsToMove));
+                fieldsToMove = c.getGuiController().getButtonPressedMoveForward();
+                c.getGuiController().movePlayerChanceCard(player, c,Integer.parseInt(fieldsToMove));
                 gameController.doAction(player);
                 break;
             case 2:
-                fieldNameToMoveTo = guiController.getButtonPressedMoveToGroup(gameBoard,gameBoard.createBoard()[1].getTitle(),gameBoard.createBoard()[2].getTitle());
-                if(fieldNameToMoveTo  == gameBoard.createBoard()[1].getTitle())
+                fieldNameToMoveTo = c.getGuiController().getButtonPressedMoveToGroup(c.getGameBoard().createBoard()[1].getTitle(),
+                        c.getGameBoard().createBoard()[2].getTitle());
+                if(fieldNameToMoveTo  == c.getGameBoard().createBoard()[1].getTitle())
                     fieldToMoveTo = 1;
                 else
                     fieldToMoveTo = 2;
-                guiController.movePlayerToField(player,fieldToMoveTo);
+                c.getGuiController().movePlayerToField(player,fieldToMoveTo);
                 break;
             case 3:
-                String choice = guiController.getButtonPressedCardOrMove();
+                String choice = c.getGuiController().getButtonPressedCardOrMove();
                 if(choice == "Move 1 field forward")
-                    guiController.movePlayerChanceCard(player,gameBoard,1);
+                    c.getGuiController().movePlayerChanceCard(player,c,1);
                 else
-                    doCardAction(player,guiController,gameBoard,gameController);
+                    doCardAction(player,c,gameController);
                 gameController.doAction(player);
                 break;
             case 4:
                 player.subtractFromBalance(2);
-                guiController.subtractFromGUIBalance(2,player);
+                c.getGuiController().subtractFromGUIBalance(2,player);
                 break;
             case 5:
-                fieldNameToMoveTo = guiController.getButtonPressedMoveToGroups(gameBoard,"Orange","Olive",
-                        gameBoard.createBoard()[1].getTitle(),gameBoard.createBoard()[2].getTitle(),
-                        gameBoard.createBoard()[19].getTitle(),gameBoard.createBoard()[20].getTitle());
+                fieldNameToMoveTo = c.getGuiController().getButtonPressedMoveToGroups("Orange","Olive",
+                        c.getGameBoard().createBoard()[1].getTitle(),c.getGameBoard().createBoard()[2].getTitle(),
+                        c.getGameBoard().createBoard()[19].getTitle(),c.getGameBoard().createBoard()[20].getTitle());
                 switch (fieldNameToMoveTo) {
                     case "Burger Bar":
                         fieldToMoveTo = 1;
@@ -96,32 +94,32 @@ public class CardDeck {
                         fieldToMoveTo = 20;
                         break;
                 }
-                guiController.movePlayerToField(player,fieldToMoveTo);
+                c.getGuiController().movePlayerToField(player,fieldToMoveTo);
                 gameController.doAction(player);
                 break;
             case 6:
-                fieldNameToMoveTo = guiController.getButtonPressedMoveToGroup(gameBoard,gameBoard.createBoard()[4].getTitle(),gameBoard.createBoard()[5].getTitle());
-                if(fieldNameToMoveTo  == gameBoard.createBoard()[4].getTitle())
+                fieldNameToMoveTo = c.getGuiController().getButtonPressedMoveToGroup(c.getGameBoard().createBoard()[4].getTitle(),c.getGameBoard().createBoard()[5].getTitle());
+                if(fieldNameToMoveTo  == c.getGameBoard().createBoard()[4].getTitle())
                     fieldToMoveTo = 4;
                 else
                     fieldToMoveTo = 5;
-                guiController.movePlayerToField(player,fieldToMoveTo);
+                c.getGuiController().movePlayerToField(player,fieldToMoveTo);
                 gameController.doAction(player);
                 break;
             case 7:
                 player.setGetOutOfJail(true);
                 break;
             case 8:
-                guiController.movePlayerToField(player,23);
+                c.getGuiController().movePlayerToField(player,23);
                 gameController.doAction(player);
                 break;
             case 9: // HOW???
 
                 break;
             case 10:
-                fieldNameToMoveTo = guiController.getButtonPressedMoveToGroups(gameBoard,"pink","light-blue",
-                        gameBoard.createBoard()[7].getTitle(),gameBoard.createBoard()[8].getTitle(),
-                        gameBoard.createBoard()[22].getTitle(),gameBoard.createBoard()[23].getTitle());
+                fieldNameToMoveTo = c.getGuiController().getButtonPressedMoveToGroups("pink","light-blue",
+                        c.getGameBoard().createBoard()[7].getTitle(),c.getGameBoard().createBoard()[8].getTitle(),
+                        c.getGameBoard().createBoard()[22].getTitle(),c.getGameBoard().createBoard()[23].getTitle());
                 switch (fieldNameToMoveTo) {
                     case "Museum":
                         fieldToMoveTo = 7;
@@ -136,24 +134,24 @@ public class CardDeck {
                         fieldToMoveTo = 23;
                         break;
                 }
-                guiController.movePlayerToField(player,fieldToMoveTo);
+                c.getGuiController().movePlayerToField(player,fieldToMoveTo);
                 gameController.doAction(player);
                 break;
             case 11:
                 player.addToBalance(2);
-                guiController.subtractFromGUIBalance(2,player);
+                c.getGuiController().subtractFromGUIBalance(2,player);
                 break;
             case 12:
-                fieldNameToMoveTo = guiController.getButtonPressedMoveToGroup(gameBoard,gameBoard.createBoard()[13].getTitle(),gameBoard.createBoard()[14].getTitle());
-                if(fieldNameToMoveTo  == gameBoard.createBoard()[13].getTitle())
+                fieldNameToMoveTo = c.getGuiController().getButtonPressedMoveToGroup(c.getGameBoard().createBoard()[13].getTitle(),c.getGameBoard().createBoard()[14].getTitle());
+                if(fieldNameToMoveTo  == c.getGameBoard().createBoard()[13].getTitle())
                     fieldToMoveTo = 13;
                 else
                     fieldToMoveTo = 14;
-                guiController.movePlayerToField(player,fieldToMoveTo);
+                c.getGuiController().movePlayerToField(player,fieldToMoveTo);
                 gameController.doAction(player);
                 break;
             case 13:
-                guiController.movePlayerToField(player,10);
+                c.getGuiController().movePlayerToField(player,10);
                 gameController.doAction(player);
                 break;
 

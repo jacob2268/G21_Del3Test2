@@ -18,9 +18,9 @@ public class VisitJail extends Field {
 
 
     @Override
-    public void doAction(GUIController guiController, Player player, GameController gameController, CardDeck cardDeck, Board gameBoard) {
+    public void doAction(Constants c, Player player,GameController gameController) {
 //        guiController.showMessage(msg.VisitJail(player));
-        guiController.showVisitJailMessage(player);
+        c.getGuiController().showMessage(c.getMsg().visitJailMessage(player.getName()) );
        // player.subtractFromBalance()
 
 

@@ -1,11 +1,7 @@
 package Model.Fields;
 
-import Controller.GUIController;
 import Controller.GameController;
-import Model.Board;
-import Model.CardDeck;
-import Model.ChanceCards;
-import Model.Player;
+import Model.*;
 
 public class Jail extends Field {
 
@@ -16,19 +12,17 @@ public class Jail extends Field {
     }
 
     @Override
-    public void doAction(GUIController guiController, Player player, GameController gameController, CardDeck cardDeck, Board gameBoard) {
-        guiController.showJailMessage(player);
+    public void doAction(Constants c, Player player, GameController gameController) {
+        c.getGuiController().showMessage(c.getMsg().landOnjailMessage(player.getName()));
         if (player.isGetOutOfJail()){
-            guiController.showGetOutOfJailMessage();
+            c.getGuiController().showMessage(c.getMsg().getOutOfJailMessage());
             player.setGetOutOfJail(false);
         }
         else{
-            guiController.showPayJailMessage();
+            c.getGuiController().showMessage(c.getMsg().payJailMessage());
             player.subtractFromBalance(1);
-            guiController.subtractFromGUIBalance(1, player);
+            c.getGuiController().subtractFromGUIBalance(1, player);
         }
-//        player.subtractFromBalance(bonus);
-//        guiController.subtractFromGUIBalance(bonus,player);
 
     }
 
