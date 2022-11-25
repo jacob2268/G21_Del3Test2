@@ -1,11 +1,7 @@
 package Model.Fields;
 
-import Controller.GUIController;
 import Controller.GameController;
-import Model.Board;
-import Model.CardDeck;
-import Model.ChanceCards;
-import Model.Player;
+import Model.*;
 
 public class Chance extends Field {
 
@@ -14,12 +10,11 @@ public class Chance extends Field {
     }
 
     @Override
-    public void doAction(GUIController guiController, Player player, GameController gameController, CardDeck cardDeck, Board gameBoard) {
-        guiController.showChanceMessage(player);
-        cardDeck.pickCard();
-        guiController.displayChanceCard(cardDeck);
-//        cardDeck.pickCard(player,guiController,gameBoard,gameController);
-        cardDeck.doCardAction(player, guiController, gameBoard, gameController);
+    public void doAction(Constants c, Player player, GameController gameController) {
+        c.getGuiController().showMessage(c.getMsg().chanceMessage(player.getName()));
+        c.getCardDeck().pickCard();
+        c.getGuiController().displayChanceCard(c.getCardDeck());
+        c.getCardDeck().doCardAction(player,c,gameController);
 
     }
 

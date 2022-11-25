@@ -1,7 +1,7 @@
 package Controller;
 
 import Model.*;
-import Model.Fields.Properties;
+import Model.Fields.Property;
 import gui_fields.*;
 import gui_main.GUI;
 
@@ -14,10 +14,8 @@ public class GUIController {
     private GUI_Field[] gui_fieldArray;
     private GUI gui;
     private GUI_Player[] gui_players;
-    private DiceCup diceCup;
     private Color[] carColors = {Color.red, Color.BLUE, Color.YELLOW, Color.GREEN};
     private int GUIPlayerBalance;
-
 
 
 
@@ -30,8 +28,6 @@ public class GUIController {
         return guiFieldFactory.createBoard();
     }
 
-    public void makePropertyOwnable() {
-    }
 
     public int getUserIntegerPlayerAmount() {
         return gui.getUserInteger("Enter number of players (2-4)",2,4);
@@ -44,10 +40,10 @@ public class GUIController {
     public String getButtonPressedMoveForward() {
         return gui.getUserButtonPressed("How many fields do you want to move forward?", "1", "2", "3", "4", "5");
     }
-    public String getButtonPressedMoveToGroup(Board gameBoard, String option1, String option2) {
+    public String getButtonPressedMoveToGroup(String option1, String option2) {
         return gui.getUserButtonPressed("What property do you want to move to?", option1,option2);
     }
-    public String getButtonPressedMoveToGroups(Board gameBoard, String color1, String color2, String option1, String option2, String option3, String option4) {
+    public String getButtonPressedMoveToGroups(String color1, String color2, String option1, String option2, String option3, String option4) {
         String color = gui.getUserButtonPressed("What color of properties would you like to go to?", color1,color2);
         String choice;
         if(color == color1)
@@ -73,9 +69,8 @@ public class GUIController {
         }
         return gui_players;
     }
-    public void rollDice(DiceCup dicecup) {
-        this.diceCup = new DiceCup();
-        gui.setDie(dicecup.getFaceValueDie1());
+    public void rollDice(Constants c) {
+        gui.setDie(c.getDiceCup().getFaceValueDie1());
     }
 
     public void showMessage1(Player player) {
@@ -86,41 +81,42 @@ public class GUIController {
         player.setPosition(fieldToMoveTo);
         player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
     }
-    public void movePlayerChanceCard(Player player, Board gameBoard, int fieldsToMove) {
+    public void movePlayerChanceCard(Player player, Constants c, int fieldsToMove) {
         player.setPosition(player.getPosition() + fieldsToMove);
+        player.setField(c.getGameBoard().getGameBoard()[player.getPosition()]);
         if(player.getPosition() >= createGUIBoard().length) {
             player.setPosition((player.getPosition()) % createGUIBoard().length);
             if(player.getPosition() == 0){
                 player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
-                gui.getFields()[player.getPosition()].setTitle(gameBoard.getTitle(player));
+                gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player.getPosition()));
             } else {
                 player.receivePassingStartBonus(player,this);
                 player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
-                gui.getFields()[player.getPosition()].setTitle(gameBoard.getTitle(player));
-                showPassingStartMessage();
+                gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player.getPosition()));
+                showMessage(c.getMsg().passingStart());
             }
         }else {
-            gui.getFields()[player.getPosition()].setTitle(gameBoard.getTitle(player));
+            gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player.getPosition()));
             player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
         }
     }
 
-    public void movePlayer(Player player, DiceCup diceCup, Board gameBoard) {
+    public void movePlayer(Constants c, Player player) {
 
-        player.setPosition(player.getPosition() + diceCup.getResult());
+        player.setPosition(player.getPosition() + c.getDiceCup().getResult());
         if(player.getPosition() >= createGUIBoard().length) {
             player.setPosition((player.getPosition()) % createGUIBoard().length);
             if(player.getPosition() == 0){
                 player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
-                gui.getFields()[player.getPosition()].setTitle(gameBoard.getTitle(player));
+                gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player.getPosition()));
             } else {
                 player.receivePassingStartBonus(player,this);
                 player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
-                gui.getFields()[player.getPosition()].setTitle(gameBoard.getTitle(player));
-                showPassingStartMessage();
+                gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player.getPosition()));
+                showMessage(c.getMsg().passingStart());
             }
         }else {
-            gui.getFields()[player.getPosition()].setTitle(gameBoard.getTitle(player));
+            gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player.getPosition()));
             player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
         }
     }
@@ -147,53 +143,43 @@ public class GUIController {
         return gui.getFields()[player.getPosition()].getDescription();
     }
 
-    public void showParkingMessage(Player player) {
-        gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " and parks here until your next turn");
-    }
 
     public void showMessage(String message) {
         gui.showMessage(message);
     }
 
-    public void showVisitJailMessage(Player player) {
-        gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " and visits jail until your next turn");
-    }
-    public void showChanceMessage(Player player) {
-        gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " and picks up a chance card");
-    }
-    public void showJailMessage(Player player) {
-        gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " loses $1");
-    }
+
+
     public void showPropertiesMessage(Player player) {
         gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle());
     }
-    public void showStartMessage(Player player) {
-        gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " and receives $" + 2);
-    }
 
-    public void showBuyingMessage() {
-        gui.showMessage("This property is free to buy... so you buy it! You pay ");
-    }
-    public void showPassingStartMessage() {
-        gui.showMessage("You passed start and received $2!");
-    }
 
     public void updateFieldStatus(Player player) {
         ((GUI_Ownable) gui.getFields()[player.getPosition()]).setOwnerName(player.getName());
     }
 
-    public void showRentMessage(Player player) {
-        if(Objects.equals(player.getName(), ((GUI_Ownable) gui.getFields()[player.getPosition()]).getOwnerName())){
-            gui.showMessage("This property is owned ny yourself");
-        }else
-            gui.showMessage("This property is owned. You pay " + gui.getFields()[player.getPosition()].getSubText() + " to " + ((GUI_Ownable) gui.getFields()[player.getPosition()]).getOwnerName());
+    public String getOwnerName(int fieldIndex) {
+        return ((GUI_Ownable) gui.getFields()[fieldIndex]).getOwnerName();
+    }
+    public String getNextFieldOwnerName(int fieldIndex) {
 
-        // Det er en god ide at lave en ny metode som ville hedde "showMessege" også giver de parametre med den besked
+
+
+        try {
+            ((GUI_Ownable) gui.getFields()[fieldIndex+1]).getOwnerName();
+        }
+        catch (ClassCastException e) {
+            getPrevFieldOwnerName(fieldIndex);
+        }
+        return ((GUI_Ownable) gui.getFields()[fieldIndex+1]).getOwnerName();
+    }
+    public String getPrevFieldOwnerName(int fieldIndex) {
+        return ((GUI_Ownable) gui.getFields()[fieldIndex-1]).getOwnerName();
 
     }
-    public String getOwnerName(Player player) {
-        return ((GUI_Ownable) gui.getFields()[player.getPosition()]).getOwnerName();
-    }
+
+
 
     public Color getColor(Player player){
         return player.getGui_player().getPrimaryColor();
@@ -202,9 +188,7 @@ public class GUIController {
         ((GUI_Ownable) gui.getFields()[player.getPosition()]).setBorder(getColor(player));
     }
 
-//    public void displayStandings(GameController gameController, Player player) {
-//        gui.showMessage("The game is over because " + gameController.getBankruptPlayer(player).getName() + " is bankrupt");
-//    }
+
 
     public void displayChanceCard(CardDeck cardDeck) {
         gui.displayChanceCard(cardDeck.createCardDeck()[cardDeck.getCurrentCard()].getCardText());
@@ -214,18 +198,25 @@ public class GUIController {
         return gui_players;
     }
 
-    public void payRent(int value, Player player, Properties property) {
+    public void payRent(int value, Player player, Property property) {
         subtractFromGUIBalance(value,player);
         addToGUIBalance(value,property.getOwner());
 
+//
 
 
     }
-    public void payDoubleRent(int value, Player player, Properties property) {
+    public void payDoubleRent(int value, Player player, Property property) {
         subtractFromGUIBalance(value*2,player);
         addToGUIBalance(value*2,property.getOwner());
 
     }
+
+    public void showPayJailMessage() {
+        gui.showMessage("You pay $1 to get out of jail :(");
+    }
+
+
 }
 
 

@@ -1,11 +1,8 @@
 package Model.Fields;
 
-import Controller.GUIController;
 import Controller.GameController;
-import Model.Board;
-import Model.CardDeck;
-import Model.ChanceCards;
-import Model.Player;
+import Model.*;
+import com.thoughtworks.qdox.model.expression.Constant;
 
 public abstract class Field {
 
@@ -28,10 +25,13 @@ public abstract class Field {
         return subText;
     }
 
-    public abstract void doAction(GUIController guiController, Player player, GameController gameController, CardDeck cardDeck, Board gameBoard);
+    public Object getSpecial(){
+        return this;
+    }
 
-//    public Player getOwner(Properties property) {
-//        return property.getOwner();
-//    }
+    //Medeater søg på google
+    public abstract void doAction(Constants constants, Player player, GameController gameController);
+
+
 
 }

@@ -2,12 +2,11 @@ package Model.Fields;
 
 import Controller.GUIController;
 import Controller.GameController;
-import Model.Board;
-import Model.CardDeck;
-import Model.ChanceCards;
-import Model.Player;
+import Model.*;
 
 public class VisitJail extends Field {
+
+    private Messages msg = new Messages();
 
     private int jailfee = 1;
 
@@ -19,8 +18,9 @@ public class VisitJail extends Field {
 
 
     @Override
-    public void doAction(GUIController guiController, Player player, GameController gameController, CardDeck cardDeck, Board gameBoard) {
-        guiController.showVisitJailMessage(player);
+    public void doAction(Constants c, Player player,GameController gameController) {
+//        guiController.showMessage(msg.VisitJail(player));
+        c.getGuiController().showMessage(c.getMsg().visitJailMessage(player.getName()) );
        // player.subtractFromBalance()
 
 

@@ -8,7 +8,6 @@ public class GUIFieldFactory {
 
     public GUI_Field[] createBoard() {
         return new GUI_Field[]
-
                 // alt skal rettes til engelsk
                 {
                         new GUI_Start("Start", "Receive $2, når du passerer", "Modtag M2, når du passerer", Color.white, Color.black),

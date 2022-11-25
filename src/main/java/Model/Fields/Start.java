@@ -1,11 +1,7 @@
 package Model.Fields;
 
-import Controller.GUIController;
 import Controller.GameController;
-import Model.Board;
-import Model.CardDeck;
-import Model.ChanceCards;
-import Model.Player;
+import Model.*;
 
 public class Start extends Field {
     private int bonus = 2;
@@ -19,10 +15,10 @@ public class Start extends Field {
 
     // lige nu får man kun $2 når man lander på start og ikke når man passerer start
     @Override
-    public void doAction(GUIController guiController, Player player, GameController gameController, CardDeck cardDeck, Board gameBoard) {
-        guiController.showStartMessage(player);
+    public void doAction(Constants c, Player player,GameController gameController) {
+        c.getGuiController().showMessage(c.getMsg().startMessage(player.getName()));
         player.addToBalance(bonus);
-        guiController.addToGUIBalance(bonus, player);
+        c.getGuiController().addToGUIBalance(bonus,player);
 
     }
 

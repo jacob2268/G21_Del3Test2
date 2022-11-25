@@ -7,50 +7,65 @@ public class Board {
 
     public Field[] createBoard() {
         gameBoard = new Field[]{
-                new Start("Start", "You recieve $2 when you land on or pass Start", 2),
-                new Properties("Burger Bar", "", false, null, 1, false, false),
-                new Properties("PizzaHut", "$1", false, null,1, false, false),
+                new Start("Start", "You receive $2 when you land on or pass Start", 2),
+                new Property("Burger Bar", "", false, null, 1, false, false),
+                new Property("PizzaHut", "$1", false, null,1, false, false),
                 new Chance("Chance", "Pick a chance card"),
-                new Properties("Candy Store", "$1", false, null, 1, false, false),
-                new Properties("Ice Cream Store", "$1", false, null, 1, false, false),
+                new Property("Candy Store", "$1", false, null, 1, false, false),
+                new Property("Ice Cream Store", "$1", false, null, 1, false, false),
                 new VisitJail("VisitJail", "You visit the jail"),
-                new Properties("Museum", "$2", false, null, 2, false, false),
-                new Properties("Library", "$2", false, null, 2, false, false),
+                new Property("Museum", "$2", false, null, 2, false, false),
+                new Property("Library", "$2", false, null, 2, false, false),
                 new Chance("Chance", "Pick a chance card"),
-                new Properties("Skate park", "$2", false, null, 2, false, false),
-                new Properties("Swimming Pool", "$2", false, null, 2, false, false),
+                new Property("Skate park", "$2", false, null, 2, false, false),
+                new Property("Swimming Pool", "$2", false, null, 2, false, false),
                 new Parking("Parking", "You park here until your next turn"),
-                new Properties("Arcade", "$3", false, null, 3, false, false),
-                new Properties("Cinema", "$3", false, null, 3, false, false),
+                new Property("Arcade", "$3", false, null, 3, false, false),
+                new Property("Cinema", "$3", false, null, 3, false, false),
                 new Chance("Chance", "Pick a chance card"),
-                new Properties("Toy Store", "$3", false, null, 3, false, false),
-                new Properties("Pet Shop", "$3", false, null, 3, false, false),
+                new Property("Toy Store", "$3", false, null, 3, false, false),
+                new Property("Pet Shop", "$3", false, null, 3, false, false),
                 new Jail("Jail", "You go to jail"),
-                new Properties("Bowling Alley", "$4", false, null, 4, false, false),
-                new Properties("Zoo", "$4", false, null, 4, false, false),
+                new Property("Bowling Alley", "$4", false, null, 4, false, false),
+                new Property("Zoo", "$4", false, null, 4, false, false),
                 new Chance("Chance", "Pick a chance card"),
-                new Properties("Water Park", "$4", false, null, 4, false, false),
-                new Properties("Beach Walk", "$4", false, null, 4, false, false)
+                new Property("Water Park", "$4", false, null, 4, false, false),
+                new Property("Beach Walk", "$4", false, null, 4, false, false)
         };
         return gameBoard;
     }
 
-    public String getTitle(Player player) {
-        return gameBoard[player.getPosition()].getTitle();
+    public String getTitle(int fieldIndex) {
+        return gameBoard[fieldIndex].getTitle();
     }
 
-    public String getSubText(Player player) {
-        return gameBoard[player.getPosition()].getSubText();
+    public String getSubText(int fieldIndex) {
+        return gameBoard[fieldIndex].getSubText();
     }
 //    public int getRent(Player player) {
 //        return gameBoard[player.getPosIndex()].g;
 //    }
 
-//    public Player getOwner(Player player) {
-//        return gameBoard[player.getPosition()].getOwner((Properties) gameBoard[player.getPosition()]);
-//    }
+    public Field getField(int fieldNumber) {
+        return gameBoard[fieldNumber];
+    }
 
-    public Properties getProperty(Player player) {
-        return (Properties) gameBoard[player.getPosition()];
+    public Property getProperty(int fieldIndex) {
+        return (Property) gameBoard[fieldIndex];
+    }
+
+    public Field getNextField(int fieldIndex) {
+        return createBoard()[fieldIndex+1];
+    }
+    public Field getPreviousField(int fieldIndex) {
+        return createBoard()[fieldIndex-1];
+    }
+
+    public Field[] getGameBoard() {
+        return gameBoard;
+    }
+
+    public void setGameBoard(Field[] gameBoard) {
+        this.gameBoard = gameBoard;
     }
 }
