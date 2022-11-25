@@ -1,5 +1,6 @@
-package Model;
+package Test;
 
+import Model.DiceCup;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
