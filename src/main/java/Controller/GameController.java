@@ -11,7 +11,6 @@ public class GameController {
     private Field[] board;
     private int playerCount = c.getGuiController().getUserIntegerPlayerAmount();
 
-
     private boolean loserIsFound = false;
 
     private static int currentPlayer;
