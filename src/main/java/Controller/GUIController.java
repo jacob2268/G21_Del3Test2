@@ -21,6 +21,7 @@ public class GUIController {
     private Messages msg = new Messages();
 
 
+
     public GUIController() {
         this.gui = new GUI(createGUIBoard());
     }
@@ -162,7 +163,7 @@ public class GUIController {
         gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " and picks up a chance card");
     }
     public void showJailMessage(Player player) {
-        gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle() + " loses $1");
+        gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle());
     }
     public void showPropertiesMessage(Player player) {
         gui.showMessage(player.getName() + " lands on " + gui.getFields()[player.getPosition()].getTitle());
@@ -223,6 +224,15 @@ public class GUIController {
         subtractFromGUIBalance(value*2,player);
         addToGUIBalance(value*2,property.getOwner());
 
+    }
+
+    public void showGetOutOfJailMessage() {
+        gui.showMessage("You have a Get Out Of Jail Free card! You do not pay the jail fee!");
+
+    }
+
+    public void showPayJailMessage() {
+        gui.showMessage("You pay $1 to get out of jail :(");
     }
 }
 

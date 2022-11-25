@@ -20,23 +20,23 @@ public class CardDeck {
                 new ChanceCards("Move to start and receive the start bonus!",0),
                 new ChanceCards("Move up to 5 fields forward!",1),
                 new ChanceCards("Free property! Move to a orange colored property. If its unowned, you get it for free! " +
-                        "If its owned, you pay rent to the owner",2),
-                new ChanceCards("You either move 1 field forward or take another chance card!",3),
+                        "If its owned, you pay rent to the owner",2), // fejl
+                new ChanceCards("You either move 1 field forward or take another chance card!",3), // fejl
                 new ChanceCards("You've eaten too much candy! Pay $2 to the bank.",4),
                 new ChanceCards("Free property! Move to a orange colored property or an olive colored property. " +
-                        "If its unowned, you get it for free! If its owned, you pay rent to the owner",5),
+                        "If its unowned, you get it for free! If its owned, you pay rent to the owner",5), // fejl
                 new ChanceCards("Free property! Move to a purple colored property. If its unowned, you get it for free! " +
-                        "If its owned, you pay rent to the owner",6),
-                new ChanceCards("Get out of jail free! You keep this card until you need it",7),
+                        "If its owned, you pay rent to the owner",6), // fejl
+                new ChanceCards("Get out of jail free! You keep this card until you need it",7), // fejl
                 new ChanceCards("Move to The Beach Walk",8),
-                new ChanceCards("Its your birthday! Everyone gives you $1. Happy birthday!",9),
+                new ChanceCards("Its your birthday! Everyone gives you $1. Happy birthday!",9), // fejl
                 new ChanceCards("Free property! Move to a pink colored property or a light-blue colored property." +
-                        "If its unowned, you get it for free! If its owned, you pay rent to the owner",10),
+                        "If its unowned, you get it for free! If its owned, you pay rent to the owner",10), // fejl
                 new ChanceCards("You've done all your homework! Receive $2 from the bank",11),
                 new ChanceCards("Free property! Move to a teal colored property. If its unowned, you get it for free! " +
-                        "If its owned, you pay rent to the owner",12),
+                        "If its owned, you pay rent to the owner",12), // fejl
                 new ChanceCards("Move to The Skate Park. If its unowned, you get it for free!" +
-                        "If its owned, you pay rent to the owner",13),
+                        "If its owned, you pay rent to the owner",13), // fejl
 
         };
     }

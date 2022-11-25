@@ -4,7 +4,6 @@ import Controller.GUIController;
 import Controller.GameController;
 import Model.Board;
 import Model.CardDeck;
-import Model.ChanceCards;
 import Model.Player;
 
 import java.util.Objects;
@@ -63,7 +62,7 @@ public class Properties extends Field {
         }
     }
 
-    public void GetforFree(GUIController guiController, Player player, GameController gameController, CardDeck cardDeck, Board gameBoard) {
+    public void getForFree(GUIController guiController, Player player, GameController gameController, CardDeck cardDeck, Board gameBoard) {
         guiController.showPropertiesMessage(player);
         if(!owned) { // hvis felt ikke er ejet får man det gratis
                 guiController.updateFieldStatus(player);
