@@ -28,7 +28,6 @@ public class Properties extends Field {
 
     @Override
     public void doAction(GUIController guiController, Player player, GameController gameController, CardDeck cardDeck, Board gameBoard) {
-
         guiController.showPropertiesMessage(player);
 
 
@@ -107,6 +106,7 @@ public class Properties extends Field {
     public int getPrice() {
         return price;
     }
+
 
     public void setPrice(int price) {
         this.price = price;

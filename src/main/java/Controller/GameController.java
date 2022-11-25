@@ -29,16 +29,16 @@ public class GameController {
 
     public void playGame() {
         setupGame();
-        while(!winnerIsFound) {
+        while (!winnerIsFound) {
             playTurn();
-if (winnerIsFound) {
-    displayStandings();
-}
+            if (winnerIsFound) {
+                displayStandings();
+            }
         }
     }
 
     private void displayStandings() {
-       Player[] sortedPlayers = playersSorted(players);
+        Player[] sortedPlayers = playersSorted(players);
         guiController.showStandingMessage(sortedPlayers);
 
     }
@@ -58,7 +58,7 @@ if (winnerIsFound) {
     }
 
     private void checkForWinner(Player player) {
-        if(player.getBalance() <= 0)
+        if (player.getBalance() <= 0)
             winnerIsFound = true;
     }
 
@@ -75,7 +75,7 @@ if (winnerIsFound) {
 
 
     public void doAction(Player player) {
-        board[player.getPosition()].doAction(guiController, players[currentPlayer],this, cardDeck, gameBoard);
+        board[player.getPosition()].doAction(guiController, players[currentPlayer], this, cardDeck, gameBoard);
     }
 
     public void setupGame() {
@@ -89,18 +89,17 @@ if (winnerIsFound) {
 
     }
 
-    public Player[] setupPlayers(){
+    public Player[] setupPlayers() {
         int playerCount = guiController.getUserIntegerPlayerAmount();
         Player[] players = new Player[playerCount];
 
         for (int i = 0; i < playerCount; i++) {
 
-            if(playerCount == 4) {
+            if (playerCount == 4) {
                 players[i] = new Player(guiController.getUserStringPlayerNames(), 0, 4);
-            }
-            else if(playerCount == 3) {players[i] = new Player(guiController.getUserStringPlayerNames(), 0, 18);
-            }
-            else if(playerCount == 2) {
+            } else if (playerCount == 3) {
+                players[i] = new Player(guiController.getUserStringPlayerNames(), 0, 18);
+            } else if (playerCount == 2) {
                 players[i] = new Player(guiController.getUserStringPlayerNames(), 0, 20);
             }
         }
@@ -112,49 +111,27 @@ if (winnerIsFound) {
         return currentPlayer;
     }
 
-    public Player[] playersSorted(Player[] players){
+    public Player[] playersSorted(Player[] players) {
         sortEndBalance(players);
         return players;
     }
 
-    public void sortEndBalance (Player[] players) {
+    public void sortEndBalance(Player[] players) {
         int indexM = 0;
         do {
             indexM = 0;
-            for (int i = 0; i < players.length-1; i++) {
-                if (players[i].getBalance() > players[i+1].getBalance()){
+            for (int i = 0; i < players.length - 1; i++) {
+                if (players[i].getBalance() > players[i + 1].getBalance()) {
                     Player tempPlayer = players[i];
-                    players[i] = players[i+1];
-                    players[i+1] = tempPlayer;
+                    players[i] = players[i + 1];
+                    players[i + 1] = tempPlayer;
                     indexM++;
                 }
             }
         }
         while (indexM > 0);
 
-        }
-
-
-
-        /*
-        Player temp = null;
-
-        for (int i = 0; i < players.length; i++) {
-
-            for (int j = 1; j < (players.length - i); j++) {
-                if (players[j - 1].getBalance() > players[j].getBalance()) {
-                    temp = players[j - 1];
-                    players[i] = players[j];
-                    players[j] = temp;
-
-                }
-            }
-        }
-return players;
     }
 }
-
-// tag spiller array, for hvert index tjekke balancen, også sortere ud fra den balance, lav et loop som checker hvilken spiller har mindst/flest penge
-// hav 2 array
 
 

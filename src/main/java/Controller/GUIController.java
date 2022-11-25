@@ -172,12 +172,12 @@ public class GUIController {
     }
 
     public void showStandingMessage(Player[] player) {
-        String displayText = "";
-        int placeNum = player.length;
-        for (int i = 0; i < player.length; i++) {
-            String text = " place " + placeNum + " player " + player[i].getName();
+        String displayText = "Final standings:";
+        int placeNum = 1;
+        for (int i = player.length-1; i >= 0; i--) {
+            String text ="\n" + placeNum + ": " + player[i].getName();
             displayText += text;
-            placeNum = placeNum - 1;
+            placeNum = placeNum + 1;
         }
         gui.showMessage(displayText);
     }
