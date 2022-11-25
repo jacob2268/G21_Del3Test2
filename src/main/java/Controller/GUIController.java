@@ -88,15 +88,15 @@ public class GUIController {
             player.setPosition((player.getPosition()) % createGUIBoard().length);
             if(player.getPosition() == 0){
                 player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
-                gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player));
+                gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player.getPosition()));
             } else {
                 player.receivePassingStartBonus(player,this);
                 player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
-                gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player));
+                gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player.getPosition()));
                 showMessage(c.getMsg().passingStart());
             }
         }else {
-            gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player));
+            gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player.getPosition()));
             player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
         }
     }
@@ -108,15 +108,15 @@ public class GUIController {
             player.setPosition((player.getPosition()) % createGUIBoard().length);
             if(player.getPosition() == 0){
                 player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
-                gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player));
+                gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player.getPosition()));
             } else {
                 player.receivePassingStartBonus(player,this);
                 player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
-                gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player));
+                gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player.getPosition()));
                 showMessage(c.getMsg().passingStart());
             }
         }else {
-            gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player));
+            gui.getFields()[player.getPosition()].setTitle(c.getGameBoard().getTitle(player.getPosition()));
             player.getGui_player().getCar().setPosition(this.gui.getFields()[player.getPosition()]);
         }
     }
@@ -159,9 +159,27 @@ public class GUIController {
         ((GUI_Ownable) gui.getFields()[player.getPosition()]).setOwnerName(player.getName());
     }
 
-    public String getOwnerName(Player player) {
-        return ((GUI_Ownable) gui.getFields()[player.getPosition()]).getOwnerName();
+    public String getOwnerName(int fieldIndex) {
+        return ((GUI_Ownable) gui.getFields()[fieldIndex]).getOwnerName();
     }
+    public String getNextFieldOwnerName(int fieldIndex) {
+
+
+
+        try {
+            ((GUI_Ownable) gui.getFields()[fieldIndex+1]).getOwnerName();
+        }
+        catch (ClassCastException e) {
+            getPrevFieldOwnerName(fieldIndex);
+        }
+        return ((GUI_Ownable) gui.getFields()[fieldIndex+1]).getOwnerName();
+    }
+    public String getPrevFieldOwnerName(int fieldIndex) {
+        return ((GUI_Ownable) gui.getFields()[fieldIndex-1]).getOwnerName();
+
+    }
+
+
 
     public Color getColor(Player player){
         return player.getGui_player().getPrimaryColor();
@@ -169,6 +187,7 @@ public class GUIController {
     public void setBorderColor(Player player) {
         ((GUI_Ownable) gui.getFields()[player.getPosition()]).setBorder(getColor(player));
     }
+
 
 
     public void displayChanceCard(CardDeck cardDeck) {

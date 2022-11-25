@@ -1,26 +1,20 @@
 package Controller;
 import Model.*;
 import Model.Fields.Field;
-import Model.Fields.Property;
 import Model.Player;
 import Model.DiceCup;
 
 public class GameController {
     GUIController guiController;
-    private DiceCup diceCup = new DiceCup();
-
-    private Board gameBoard = new Board();
 
     private Constants c = new Constants();
-    private CardDeck cardDeck = new CardDeck();
     private ChanceCards[] cards;
     private Player[] players;
     private Field[] board;
-    private Messages msg = new Messages();
     private int playerCount = c.getGuiController().getUserIntegerPlayerAmount();
 
 
-    private boolean winnerIsFound = false;
+    private boolean loserIsFound = false;
 
     private static int currentPlayer;
 
@@ -30,9 +24,9 @@ public class GameController {
 
     public void playGame() {
         setupGame();
-        while (!winnerIsFound) {
+        while (!loserIsFound) {
             playTurn();
-            if (winnerIsFound) {
+            if (loserIsFound) {
                 displayStandings();
             }
         }
@@ -51,16 +45,17 @@ public class GameController {
             c.getGuiController().rollDice(c);
             c.getGuiController().movePlayer(c,players[currentPlayer]);
             doAction(players[currentPlayer]);
+            System.out.println(players[currentPlayer].getPosition());
             //checkForWinner(players[currentPlayer]);
             checkForWinner(players[currentPlayer]);
-            if (winnerIsFound) return;
+            if (loserIsFound) return;
 
         }
     }
 
     private void checkForWinner(Player player) {
         if (player.getBalance() <= 0)
-            winnerIsFound = true;
+            loserIsFound = true;
     }
 
 //    Player losingPlayer;

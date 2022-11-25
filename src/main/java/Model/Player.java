@@ -14,6 +14,7 @@ public class Player {
     private GUI_Player gui_player;
     private boolean getOutOfJail = false;
     private boolean isBankrupt = false;
+    private boolean getPropertyFree = false;
 
     private Field field;
 
@@ -103,6 +104,14 @@ public class Player {
 
     public void setField(Field field) {
         this.field = field;
+    }
+
+    public boolean isGetPropertyFree() {
+        return getPropertyFree;
+    }
+
+    public void setGetPropertyFree(boolean getPropertyFree) {
+        this.getPropertyFree = getPropertyFree;
     }
 }
 

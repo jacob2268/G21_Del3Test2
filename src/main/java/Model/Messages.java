@@ -65,5 +65,13 @@ public class Messages {
     public String parkingMessage() {
         return "You park here until your next turn";
     }
+
+    public String getForFree() {
+        return "You get it for free!";
+    }
+
+    public String payDoubleRentMessage(String ownerName, int doubleRent) {
+        return  ownerName + " owns this property and its neighbour. You pay double rent (" + doubleRent + ") to " + ownerName;
+    }
 }
 

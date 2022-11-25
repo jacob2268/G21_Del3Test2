@@ -7,7 +7,7 @@ public class Board {
 
     public Field[] createBoard() {
         gameBoard = new Field[]{
-                new Start("Start", "You recieve $2 when you land on or pass Start", 2),
+                new Start("Start", "You receive $2 when you land on or pass Start", 2),
                 new Property("Burger Bar", "", false, null, 1, false, false),
                 new Property("PizzaHut", "$1", false, null,1, false, false),
                 new Chance("Chance", "Pick a chance card"),
@@ -35,30 +35,30 @@ public class Board {
         return gameBoard;
     }
 
-    public String getTitle(Player player) {
-        return gameBoard[player.getPosition()].getTitle();
+    public String getTitle(int fieldIndex) {
+        return gameBoard[fieldIndex].getTitle();
     }
 
-    public String getSubText(Player player) {
-        return gameBoard[player.getPosition()].getSubText();
+    public String getSubText(int fieldIndex) {
+        return gameBoard[fieldIndex].getSubText();
     }
 //    public int getRent(Player player) {
 //        return gameBoard[player.getPosIndex()].g;
 //    }
 
-//    public Player getOwner(Player player) {
-//        return gameBoard[player.getPosition()].getOwner((Properties) gameBoard[player.getPosition()]);
-//    }
-
-    public Property getProperty(Player player) {
-        return (Property) gameBoard[player.getPosition()];
+    public Field getField(int fieldNumber) {
+        return gameBoard[fieldNumber];
     }
 
-    public Field getNextField(Player player) {
-        return createBoard()[player.getPosition()+1];
+    public Property getProperty(int fieldIndex) {
+        return (Property) gameBoard[fieldIndex];
     }
-    public Field getPreviousField(Player player) {
-        return createBoard()[player.getPosition()-1];
+
+    public Field getNextField(int fieldIndex) {
+        return createBoard()[fieldIndex+1];
+    }
+    public Field getPreviousField(int fieldIndex) {
+        return createBoard()[fieldIndex-1];
     }
 
     public Field[] getGameBoard() {
